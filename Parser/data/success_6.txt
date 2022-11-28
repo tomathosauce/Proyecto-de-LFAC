@@ -1,0 +1,5 @@
+INICIO.
+c = a b /.
+b = 2 c +.
+Imprimir(1 a +, b).
+FIN.

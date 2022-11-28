@@ -1,0 +1,885 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> INICIO PUNTO list_sentences FIN PUNTO
+Rule 2     list_sentences -> list_sentences sentence_with_punto
+Rule 3     list_sentences -> sentence_with_punto
+Rule 4     sentence_with_punto -> sentence PUNTO
+Rule 5     sentence -> ENTERO list_id
+Rule 6     sentence -> CADENA list_id
+Rule 7     sentence -> REAL list_id
+Rule 8     sentence -> IMPRIMIR PARIZ list_arg PARDE
+Rule 9     sentence -> LEER PARIZ list_id PARDE
+Rule 10    sentence -> IDENTIF IGUAL expression
+Rule 11    sentence -> IDENTIF IGUAL special_expression
+Rule 12    sentence -> IDENTIF IGUAL CADENA_VALOR
+Rule 13    list_arg -> list_arg COMA arg
+Rule 14    list_arg -> arg
+Rule 15    arg -> IDENTIF
+Rule 16    arg -> expression
+Rule 17    arg -> special_expression
+Rule 18    arg -> CADENA_VALOR
+Rule 19    operator -> MAS
+Rule 20    operator -> MENOS
+Rule 21    operator -> POR
+Rule 22    operator -> ENTRE
+Rule 23    list_id -> list_id COMA IDENTIF
+Rule 24    list_id -> IDENTIF
+Rule 25    expression -> expression operator expression
+Rule 26    expression -> PARIZ expression PARDE
+Rule 27    expression -> IDENTIF
+Rule 28    expression -> NUMERO
+Rule 29    expression -> MENOS expression
+Rule 30    special_expression -> IDENTIF IDENTIF operator
+Rule 31    special_expression -> NUMERO NUMERO operator
+Rule 32    special_expression -> NUMERO IDENTIF operator
+Rule 33    special_expression -> IDENTIF NUMERO operator
+
+Terminals, with rules where they appear
+
+CADENA               : 6
+CADENA_VALOR         : 12 18
+COMA                 : 13 23
+ENTERO               : 5
+ENTRE                : 22
+FIN                  : 1
+IDENTIF              : 10 11 12 15 23 24 27 30 30 32 33
+IGUAL                : 10 11 12
+IMPRIMIR             : 8
+INICIO               : 1
+LEER                 : 9
+MAS                  : 19
+MENOS                : 20 29
+NUMERO               : 28 31 31 32 33
+PARDE                : 8 9 26
+PARIZ                : 8 9 26
+POR                  : 21
+PUNTO                : 1 1 4
+REAL                 : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg                  : 13 14
+expression           : 10 16 25 25 26 29
+list_arg             : 8 13
+list_id              : 5 6 7 9 23
+list_sentences       : 1 2
+operator             : 25 30 31 32 33
+sentence             : 4
+sentence_with_punto  : 2 3
+special_expression   : 11 17
+start                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . INICIO PUNTO list_sentences FIN PUNTO
+
+    INICIO          shift and go to state 2
+
+    start                          shift and go to state 1
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> INICIO . PUNTO list_sentences FIN PUNTO
+
+    PUNTO           shift and go to state 3
+
+
+state 3
+
+    (1) start -> INICIO PUNTO . list_sentences FIN PUNTO
+    (2) list_sentences -> . list_sentences sentence_with_punto
+    (3) list_sentences -> . sentence_with_punto
+    (4) sentence_with_punto -> . sentence PUNTO
+    (5) sentence -> . ENTERO list_id
+    (6) sentence -> . CADENA list_id
+    (7) sentence -> . REAL list_id
+    (8) sentence -> . IMPRIMIR PARIZ list_arg PARDE
+    (9) sentence -> . LEER PARIZ list_id PARDE
+    (10) sentence -> . IDENTIF IGUAL expression
+    (11) sentence -> . IDENTIF IGUAL special_expression
+    (12) sentence -> . IDENTIF IGUAL CADENA_VALOR
+
+    ENTERO          shift and go to state 7
+    CADENA          shift and go to state 8
+    REAL            shift and go to state 9
+    IMPRIMIR        shift and go to state 10
+    LEER            shift and go to state 11
+    IDENTIF         shift and go to state 12
+
+    list_sentences                 shift and go to state 4
+    sentence_with_punto            shift and go to state 5
+    sentence                       shift and go to state 6
+
+state 4
+
+    (1) start -> INICIO PUNTO list_sentences . FIN PUNTO
+    (2) list_sentences -> list_sentences . sentence_with_punto
+    (4) sentence_with_punto -> . sentence PUNTO
+    (5) sentence -> . ENTERO list_id
+    (6) sentence -> . CADENA list_id
+    (7) sentence -> . REAL list_id
+    (8) sentence -> . IMPRIMIR PARIZ list_arg PARDE
+    (9) sentence -> . LEER PARIZ list_id PARDE
+    (10) sentence -> . IDENTIF IGUAL expression
+    (11) sentence -> . IDENTIF IGUAL special_expression
+    (12) sentence -> . IDENTIF IGUAL CADENA_VALOR
+
+    FIN             shift and go to state 13
+    ENTERO          shift and go to state 7
+    CADENA          shift and go to state 8
+    REAL            shift and go to state 9
+    IMPRIMIR        shift and go to state 10
+    LEER            shift and go to state 11
+    IDENTIF         shift and go to state 12
+
+    sentence_with_punto            shift and go to state 14
+    sentence                       shift and go to state 6
+
+state 5
+
+    (3) list_sentences -> sentence_with_punto .
+
+    FIN             reduce using rule 3 (list_sentences -> sentence_with_punto .)
+    ENTERO          reduce using rule 3 (list_sentences -> sentence_with_punto .)
+    CADENA          reduce using rule 3 (list_sentences -> sentence_with_punto .)
+    REAL            reduce using rule 3 (list_sentences -> sentence_with_punto .)
+    IMPRIMIR        reduce using rule 3 (list_sentences -> sentence_with_punto .)
+    LEER            reduce using rule 3 (list_sentences -> sentence_with_punto .)
+    IDENTIF         reduce using rule 3 (list_sentences -> sentence_with_punto .)
+
+
+state 6
+
+    (4) sentence_with_punto -> sentence . PUNTO
+
+    PUNTO           shift and go to state 15
+
+
+state 7
+
+    (5) sentence -> ENTERO . list_id
+    (23) list_id -> . list_id COMA IDENTIF
+    (24) list_id -> . IDENTIF
+
+    IDENTIF         shift and go to state 17
+
+    list_id                        shift and go to state 16
+
+state 8
+
+    (6) sentence -> CADENA . list_id
+    (23) list_id -> . list_id COMA IDENTIF
+    (24) list_id -> . IDENTIF
+
+    IDENTIF         shift and go to state 17
+
+    list_id                        shift and go to state 18
+
+state 9
+
+    (7) sentence -> REAL . list_id
+    (23) list_id -> . list_id COMA IDENTIF
+    (24) list_id -> . IDENTIF
+
+    IDENTIF         shift and go to state 17
+
+    list_id                        shift and go to state 19
+
+state 10
+
+    (8) sentence -> IMPRIMIR . PARIZ list_arg PARDE
+
+    PARIZ           shift and go to state 20
+
+
+state 11
+
+    (9) sentence -> LEER . PARIZ list_id PARDE
+
+    PARIZ           shift and go to state 21
+
+
+state 12
+
+    (10) sentence -> IDENTIF . IGUAL expression
+    (11) sentence -> IDENTIF . IGUAL special_expression
+    (12) sentence -> IDENTIF . IGUAL CADENA_VALOR
+
+    IGUAL           shift and go to state 22
+
+
+state 13
+
+    (1) start -> INICIO PUNTO list_sentences FIN . PUNTO
+
+    PUNTO           shift and go to state 23
+
+
+state 14
+
+    (2) list_sentences -> list_sentences sentence_with_punto .
+
+    FIN             reduce using rule 2 (list_sentences -> list_sentences sentence_with_punto .)
+    ENTERO          reduce using rule 2 (list_sentences -> list_sentences sentence_with_punto .)
+    CADENA          reduce using rule 2 (list_sentences -> list_sentences sentence_with_punto .)
+    REAL            reduce using rule 2 (list_sentences -> list_sentences sentence_with_punto .)
+    IMPRIMIR        reduce using rule 2 (list_sentences -> list_sentences sentence_with_punto .)
+    LEER            reduce using rule 2 (list_sentences -> list_sentences sentence_with_punto .)
+    IDENTIF         reduce using rule 2 (list_sentences -> list_sentences sentence_with_punto .)
+
+
+state 15
+
+    (4) sentence_with_punto -> sentence PUNTO .
+
+    FIN             reduce using rule 4 (sentence_with_punto -> sentence PUNTO .)
+    ENTERO          reduce using rule 4 (sentence_with_punto -> sentence PUNTO .)
+    CADENA          reduce using rule 4 (sentence_with_punto -> sentence PUNTO .)
+    REAL            reduce using rule 4 (sentence_with_punto -> sentence PUNTO .)
+    IMPRIMIR        reduce using rule 4 (sentence_with_punto -> sentence PUNTO .)
+    LEER            reduce using rule 4 (sentence_with_punto -> sentence PUNTO .)
+    IDENTIF         reduce using rule 4 (sentence_with_punto -> sentence PUNTO .)
+
+
+state 16
+
+    (5) sentence -> ENTERO list_id .
+    (23) list_id -> list_id . COMA IDENTIF
+
+    PUNTO           reduce using rule 5 (sentence -> ENTERO list_id .)
+    COMA            shift and go to state 24
+
+
+state 17
+
+    (24) list_id -> IDENTIF .
+
+    COMA            reduce using rule 24 (list_id -> IDENTIF .)
+    PUNTO           reduce using rule 24 (list_id -> IDENTIF .)
+    PARDE           reduce using rule 24 (list_id -> IDENTIF .)
+
+
+state 18
+
+    (6) sentence -> CADENA list_id .
+    (23) list_id -> list_id . COMA IDENTIF
+
+    PUNTO           reduce using rule 6 (sentence -> CADENA list_id .)
+    COMA            shift and go to state 24
+
+
+state 19
+
+    (7) sentence -> REAL list_id .
+    (23) list_id -> list_id . COMA IDENTIF
+
+    PUNTO           reduce using rule 7 (sentence -> REAL list_id .)
+    COMA            shift and go to state 24
+
+
+state 20
+
+    (8) sentence -> IMPRIMIR PARIZ . list_arg PARDE
+    (13) list_arg -> . list_arg COMA arg
+    (14) list_arg -> . arg
+    (15) arg -> . IDENTIF
+    (16) arg -> . expression
+    (17) arg -> . special_expression
+    (18) arg -> . CADENA_VALOR
+    (25) expression -> . expression operator expression
+    (26) expression -> . PARIZ expression PARDE
+    (27) expression -> . IDENTIF
+    (28) expression -> . NUMERO
+    (29) expression -> . MENOS expression
+    (30) special_expression -> . IDENTIF IDENTIF operator
+    (31) special_expression -> . NUMERO NUMERO operator
+    (32) special_expression -> . NUMERO IDENTIF operator
+    (33) special_expression -> . IDENTIF NUMERO operator
+
+    IDENTIF         shift and go to state 28
+    CADENA_VALOR    shift and go to state 31
+    PARIZ           shift and go to state 25
+    NUMERO          shift and go to state 32
+    MENOS           shift and go to state 33
+
+    list_arg                       shift and go to state 26
+    arg                            shift and go to state 27
+    expression                     shift and go to state 29
+    special_expression             shift and go to state 30
+
+state 21
+
+    (9) sentence -> LEER PARIZ . list_id PARDE
+    (23) list_id -> . list_id COMA IDENTIF
+    (24) list_id -> . IDENTIF
+
+    IDENTIF         shift and go to state 17
+
+    list_id                        shift and go to state 34
+
+state 22
+
+    (10) sentence -> IDENTIF IGUAL . expression
+    (11) sentence -> IDENTIF IGUAL . special_expression
+    (12) sentence -> IDENTIF IGUAL . CADENA_VALOR
+    (25) expression -> . expression operator expression
+    (26) expression -> . PARIZ expression PARDE
+    (27) expression -> . IDENTIF
+    (28) expression -> . NUMERO
+    (29) expression -> . MENOS expression
+    (30) special_expression -> . IDENTIF IDENTIF operator
+    (31) special_expression -> . NUMERO NUMERO operator
+    (32) special_expression -> . NUMERO IDENTIF operator
+    (33) special_expression -> . IDENTIF NUMERO operator
+
+    CADENA_VALOR    shift and go to state 38
+    PARIZ           shift and go to state 25
+    IDENTIF         shift and go to state 35
+    NUMERO          shift and go to state 32
+    MENOS           shift and go to state 33
+
+    expression                     shift and go to state 36
+    special_expression             shift and go to state 37
+
+state 23
+
+    (1) start -> INICIO PUNTO list_sentences FIN PUNTO .
+
+    $end            reduce using rule 1 (start -> INICIO PUNTO list_sentences FIN PUNTO .)
+
+
+state 24
+
+    (23) list_id -> list_id COMA . IDENTIF
+
+    IDENTIF         shift and go to state 39
+
+
+state 25
+
+    (26) expression -> PARIZ . expression PARDE
+    (25) expression -> . expression operator expression
+    (26) expression -> . PARIZ expression PARDE
+    (27) expression -> . IDENTIF
+    (28) expression -> . NUMERO
+    (29) expression -> . MENOS expression
+
+    PARIZ           shift and go to state 25
+    IDENTIF         shift and go to state 41
+    NUMERO          shift and go to state 42
+    MENOS           shift and go to state 33
+
+    expression                     shift and go to state 40
+
+state 26
+
+    (8) sentence -> IMPRIMIR PARIZ list_arg . PARDE
+    (13) list_arg -> list_arg . COMA arg
+
+    PARDE           shift and go to state 43
+    COMA            shift and go to state 44
+
+
+state 27
+
+    (14) list_arg -> arg .
+
+    PARDE           reduce using rule 14 (list_arg -> arg .)
+    COMA            reduce using rule 14 (list_arg -> arg .)
+
+
+state 28
+
+    (15) arg -> IDENTIF .
+    (27) expression -> IDENTIF .
+    (30) special_expression -> IDENTIF . IDENTIF operator
+    (33) special_expression -> IDENTIF . NUMERO operator
+
+  ! reduce/reduce conflict for PARDE resolved using rule 15 (arg -> IDENTIF .)
+  ! reduce/reduce conflict for COMA resolved using rule 15 (arg -> IDENTIF .)
+    PARDE           reduce using rule 15 (arg -> IDENTIF .)
+    COMA            reduce using rule 15 (arg -> IDENTIF .)
+    MAS             reduce using rule 27 (expression -> IDENTIF .)
+    MENOS           reduce using rule 27 (expression -> IDENTIF .)
+    POR             reduce using rule 27 (expression -> IDENTIF .)
+    ENTRE           reduce using rule 27 (expression -> IDENTIF .)
+    IDENTIF         shift and go to state 45
+    NUMERO          shift and go to state 46
+
+  ! PARDE           [ reduce using rule 27 (expression -> IDENTIF .) ]
+  ! COMA            [ reduce using rule 27 (expression -> IDENTIF .) ]
+
+
+state 29
+
+    (16) arg -> expression .
+    (25) expression -> expression . operator expression
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+    PARDE           reduce using rule 16 (arg -> expression .)
+    COMA            reduce using rule 16 (arg -> expression .)
+    MAS             shift and go to state 48
+    MENOS           shift and go to state 49
+    POR             shift and go to state 50
+    ENTRE           shift and go to state 51
+
+    operator                       shift and go to state 47
+
+state 30
+
+    (17) arg -> special_expression .
+
+    PARDE           reduce using rule 17 (arg -> special_expression .)
+    COMA            reduce using rule 17 (arg -> special_expression .)
+
+
+state 31
+
+    (18) arg -> CADENA_VALOR .
+
+    PARDE           reduce using rule 18 (arg -> CADENA_VALOR .)
+    COMA            reduce using rule 18 (arg -> CADENA_VALOR .)
+
+
+state 32
+
+    (28) expression -> NUMERO .
+    (31) special_expression -> NUMERO . NUMERO operator
+    (32) special_expression -> NUMERO . IDENTIF operator
+
+    MAS             reduce using rule 28 (expression -> NUMERO .)
+    MENOS           reduce using rule 28 (expression -> NUMERO .)
+    POR             reduce using rule 28 (expression -> NUMERO .)
+    ENTRE           reduce using rule 28 (expression -> NUMERO .)
+    PARDE           reduce using rule 28 (expression -> NUMERO .)
+    COMA            reduce using rule 28 (expression -> NUMERO .)
+    PUNTO           reduce using rule 28 (expression -> NUMERO .)
+    NUMERO          shift and go to state 52
+    IDENTIF         shift and go to state 53
+
+
+state 33
+
+    (29) expression -> MENOS . expression
+    (25) expression -> . expression operator expression
+    (26) expression -> . PARIZ expression PARDE
+    (27) expression -> . IDENTIF
+    (28) expression -> . NUMERO
+    (29) expression -> . MENOS expression
+
+    PARIZ           shift and go to state 25
+    IDENTIF         shift and go to state 41
+    NUMERO          shift and go to state 42
+    MENOS           shift and go to state 33
+
+    expression                     shift and go to state 54
+
+state 34
+
+    (9) sentence -> LEER PARIZ list_id . PARDE
+    (23) list_id -> list_id . COMA IDENTIF
+
+    PARDE           shift and go to state 55
+    COMA            shift and go to state 24
+
+
+state 35
+
+    (27) expression -> IDENTIF .
+    (30) special_expression -> IDENTIF . IDENTIF operator
+    (33) special_expression -> IDENTIF . NUMERO operator
+
+    MAS             reduce using rule 27 (expression -> IDENTIF .)
+    MENOS           reduce using rule 27 (expression -> IDENTIF .)
+    POR             reduce using rule 27 (expression -> IDENTIF .)
+    ENTRE           reduce using rule 27 (expression -> IDENTIF .)
+    PUNTO           reduce using rule 27 (expression -> IDENTIF .)
+    IDENTIF         shift and go to state 45
+    NUMERO          shift and go to state 46
+
+
+state 36
+
+    (10) sentence -> IDENTIF IGUAL expression .
+    (25) expression -> expression . operator expression
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+    PUNTO           reduce using rule 10 (sentence -> IDENTIF IGUAL expression .)
+    MAS             shift and go to state 48
+    MENOS           shift and go to state 49
+    POR             shift and go to state 50
+    ENTRE           shift and go to state 51
+
+    operator                       shift and go to state 47
+
+state 37
+
+    (11) sentence -> IDENTIF IGUAL special_expression .
+
+    PUNTO           reduce using rule 11 (sentence -> IDENTIF IGUAL special_expression .)
+
+
+state 38
+
+    (12) sentence -> IDENTIF IGUAL CADENA_VALOR .
+
+    PUNTO           reduce using rule 12 (sentence -> IDENTIF IGUAL CADENA_VALOR .)
+
+
+state 39
+
+    (23) list_id -> list_id COMA IDENTIF .
+
+    COMA            reduce using rule 23 (list_id -> list_id COMA IDENTIF .)
+    PUNTO           reduce using rule 23 (list_id -> list_id COMA IDENTIF .)
+    PARDE           reduce using rule 23 (list_id -> list_id COMA IDENTIF .)
+
+
+state 40
+
+    (26) expression -> PARIZ expression . PARDE
+    (25) expression -> expression . operator expression
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+    PARDE           shift and go to state 56
+    MAS             shift and go to state 48
+    MENOS           shift and go to state 49
+    POR             shift and go to state 50
+    ENTRE           shift and go to state 51
+
+    operator                       shift and go to state 47
+
+state 41
+
+    (27) expression -> IDENTIF .
+
+    PARDE           reduce using rule 27 (expression -> IDENTIF .)
+    MAS             reduce using rule 27 (expression -> IDENTIF .)
+    MENOS           reduce using rule 27 (expression -> IDENTIF .)
+    POR             reduce using rule 27 (expression -> IDENTIF .)
+    ENTRE           reduce using rule 27 (expression -> IDENTIF .)
+    COMA            reduce using rule 27 (expression -> IDENTIF .)
+    PUNTO           reduce using rule 27 (expression -> IDENTIF .)
+
+
+state 42
+
+    (28) expression -> NUMERO .
+
+    PARDE           reduce using rule 28 (expression -> NUMERO .)
+    MAS             reduce using rule 28 (expression -> NUMERO .)
+    MENOS           reduce using rule 28 (expression -> NUMERO .)
+    POR             reduce using rule 28 (expression -> NUMERO .)
+    ENTRE           reduce using rule 28 (expression -> NUMERO .)
+    COMA            reduce using rule 28 (expression -> NUMERO .)
+    PUNTO           reduce using rule 28 (expression -> NUMERO .)
+
+
+state 43
+
+    (8) sentence -> IMPRIMIR PARIZ list_arg PARDE .
+
+    PUNTO           reduce using rule 8 (sentence -> IMPRIMIR PARIZ list_arg PARDE .)
+
+
+state 44
+
+    (13) list_arg -> list_arg COMA . arg
+    (15) arg -> . IDENTIF
+    (16) arg -> . expression
+    (17) arg -> . special_expression
+    (18) arg -> . CADENA_VALOR
+    (25) expression -> . expression operator expression
+    (26) expression -> . PARIZ expression PARDE
+    (27) expression -> . IDENTIF
+    (28) expression -> . NUMERO
+    (29) expression -> . MENOS expression
+    (30) special_expression -> . IDENTIF IDENTIF operator
+    (31) special_expression -> . NUMERO NUMERO operator
+    (32) special_expression -> . NUMERO IDENTIF operator
+    (33) special_expression -> . IDENTIF NUMERO operator
+
+    IDENTIF         shift and go to state 28
+    CADENA_VALOR    shift and go to state 31
+    PARIZ           shift and go to state 25
+    NUMERO          shift and go to state 32
+    MENOS           shift and go to state 33
+
+    arg                            shift and go to state 57
+    expression                     shift and go to state 29
+    special_expression             shift and go to state 30
+
+state 45
+
+    (30) special_expression -> IDENTIF IDENTIF . operator
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+    MAS             shift and go to state 48
+    MENOS           shift and go to state 49
+    POR             shift and go to state 50
+    ENTRE           shift and go to state 51
+
+    operator                       shift and go to state 58
+
+state 46
+
+    (33) special_expression -> IDENTIF NUMERO . operator
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+    MAS             shift and go to state 48
+    MENOS           shift and go to state 49
+    POR             shift and go to state 50
+    ENTRE           shift and go to state 51
+
+    operator                       shift and go to state 59
+
+state 47
+
+    (25) expression -> expression operator . expression
+    (25) expression -> . expression operator expression
+    (26) expression -> . PARIZ expression PARDE
+    (27) expression -> . IDENTIF
+    (28) expression -> . NUMERO
+    (29) expression -> . MENOS expression
+
+    PARIZ           shift and go to state 25
+    IDENTIF         shift and go to state 41
+    NUMERO          shift and go to state 42
+    MENOS           shift and go to state 33
+
+    expression                     shift and go to state 60
+
+state 48
+
+    (19) operator -> MAS .
+
+    PARIZ           reduce using rule 19 (operator -> MAS .)
+    IDENTIF         reduce using rule 19 (operator -> MAS .)
+    NUMERO          reduce using rule 19 (operator -> MAS .)
+    MENOS           reduce using rule 19 (operator -> MAS .)
+    PARDE           reduce using rule 19 (operator -> MAS .)
+    COMA            reduce using rule 19 (operator -> MAS .)
+    PUNTO           reduce using rule 19 (operator -> MAS .)
+
+
+state 49
+
+    (20) operator -> MENOS .
+
+    PARIZ           reduce using rule 20 (operator -> MENOS .)
+    IDENTIF         reduce using rule 20 (operator -> MENOS .)
+    NUMERO          reduce using rule 20 (operator -> MENOS .)
+    MENOS           reduce using rule 20 (operator -> MENOS .)
+    PARDE           reduce using rule 20 (operator -> MENOS .)
+    COMA            reduce using rule 20 (operator -> MENOS .)
+    PUNTO           reduce using rule 20 (operator -> MENOS .)
+
+
+state 50
+
+    (21) operator -> POR .
+
+    PARIZ           reduce using rule 21 (operator -> POR .)
+    IDENTIF         reduce using rule 21 (operator -> POR .)
+    NUMERO          reduce using rule 21 (operator -> POR .)
+    MENOS           reduce using rule 21 (operator -> POR .)
+    PARDE           reduce using rule 21 (operator -> POR .)
+    COMA            reduce using rule 21 (operator -> POR .)
+    PUNTO           reduce using rule 21 (operator -> POR .)
+
+
+state 51
+
+    (22) operator -> ENTRE .
+
+    PARIZ           reduce using rule 22 (operator -> ENTRE .)
+    IDENTIF         reduce using rule 22 (operator -> ENTRE .)
+    NUMERO          reduce using rule 22 (operator -> ENTRE .)
+    MENOS           reduce using rule 22 (operator -> ENTRE .)
+    PARDE           reduce using rule 22 (operator -> ENTRE .)
+    COMA            reduce using rule 22 (operator -> ENTRE .)
+    PUNTO           reduce using rule 22 (operator -> ENTRE .)
+
+
+state 52
+
+    (31) special_expression -> NUMERO NUMERO . operator
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+    MAS             shift and go to state 48
+    MENOS           shift and go to state 49
+    POR             shift and go to state 50
+    ENTRE           shift and go to state 51
+
+    operator                       shift and go to state 61
+
+state 53
+
+    (32) special_expression -> NUMERO IDENTIF . operator
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+    MAS             shift and go to state 48
+    MENOS           shift and go to state 49
+    POR             shift and go to state 50
+    ENTRE           shift and go to state 51
+
+    operator                       shift and go to state 62
+
+state 54
+
+    (29) expression -> MENOS expression .
+    (25) expression -> expression . operator expression
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+    MAS             reduce using rule 29 (expression -> MENOS expression .)
+    MENOS           reduce using rule 29 (expression -> MENOS expression .)
+    POR             reduce using rule 29 (expression -> MENOS expression .)
+    ENTRE           reduce using rule 29 (expression -> MENOS expression .)
+    PARDE           reduce using rule 29 (expression -> MENOS expression .)
+    COMA            reduce using rule 29 (expression -> MENOS expression .)
+    PUNTO           reduce using rule 29 (expression -> MENOS expression .)
+
+  ! MAS             [ shift and go to state 48 ]
+  ! MENOS           [ shift and go to state 49 ]
+  ! POR             [ shift and go to state 50 ]
+  ! ENTRE           [ shift and go to state 51 ]
+
+    operator                       shift and go to state 47
+
+state 55
+
+    (9) sentence -> LEER PARIZ list_id PARDE .
+
+    PUNTO           reduce using rule 9 (sentence -> LEER PARIZ list_id PARDE .)
+
+
+state 56
+
+    (26) expression -> PARIZ expression PARDE .
+
+    MAS             reduce using rule 26 (expression -> PARIZ expression PARDE .)
+    MENOS           reduce using rule 26 (expression -> PARIZ expression PARDE .)
+    POR             reduce using rule 26 (expression -> PARIZ expression PARDE .)
+    ENTRE           reduce using rule 26 (expression -> PARIZ expression PARDE .)
+    PARDE           reduce using rule 26 (expression -> PARIZ expression PARDE .)
+    COMA            reduce using rule 26 (expression -> PARIZ expression PARDE .)
+    PUNTO           reduce using rule 26 (expression -> PARIZ expression PARDE .)
+
+
+state 57
+
+    (13) list_arg -> list_arg COMA arg .
+
+    PARDE           reduce using rule 13 (list_arg -> list_arg COMA arg .)
+    COMA            reduce using rule 13 (list_arg -> list_arg COMA arg .)
+
+
+state 58
+
+    (30) special_expression -> IDENTIF IDENTIF operator .
+
+    PARDE           reduce using rule 30 (special_expression -> IDENTIF IDENTIF operator .)
+    COMA            reduce using rule 30 (special_expression -> IDENTIF IDENTIF operator .)
+    PUNTO           reduce using rule 30 (special_expression -> IDENTIF IDENTIF operator .)
+
+
+state 59
+
+    (33) special_expression -> IDENTIF NUMERO operator .
+
+    PARDE           reduce using rule 33 (special_expression -> IDENTIF NUMERO operator .)
+    COMA            reduce using rule 33 (special_expression -> IDENTIF NUMERO operator .)
+    PUNTO           reduce using rule 33 (special_expression -> IDENTIF NUMERO operator .)
+
+
+state 60
+
+    (25) expression -> expression operator expression .
+    (25) expression -> expression . operator expression
+    (19) operator -> . MAS
+    (20) operator -> . MENOS
+    (21) operator -> . POR
+    (22) operator -> . ENTRE
+
+  ! shift/reduce conflict for MAS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for POR resolved as shift
+  ! shift/reduce conflict for ENTRE resolved as shift
+    PARDE           reduce using rule 25 (expression -> expression operator expression .)
+    COMA            reduce using rule 25 (expression -> expression operator expression .)
+    PUNTO           reduce using rule 25 (expression -> expression operator expression .)
+    MAS             shift and go to state 48
+    MENOS           shift and go to state 49
+    POR             shift and go to state 50
+    ENTRE           shift and go to state 51
+
+  ! MAS             [ reduce using rule 25 (expression -> expression operator expression .) ]
+  ! MENOS           [ reduce using rule 25 (expression -> expression operator expression .) ]
+  ! POR             [ reduce using rule 25 (expression -> expression operator expression .) ]
+  ! ENTRE           [ reduce using rule 25 (expression -> expression operator expression .) ]
+
+    operator                       shift and go to state 47
+
+state 61
+
+    (31) special_expression -> NUMERO NUMERO operator .
+
+    PARDE           reduce using rule 31 (special_expression -> NUMERO NUMERO operator .)
+    COMA            reduce using rule 31 (special_expression -> NUMERO NUMERO operator .)
+    PUNTO           reduce using rule 31 (special_expression -> NUMERO NUMERO operator .)
+
+
+state 62
+
+    (32) special_expression -> NUMERO IDENTIF operator .
+
+    PARDE           reduce using rule 32 (special_expression -> NUMERO IDENTIF operator .)
+    COMA            reduce using rule 32 (special_expression -> NUMERO IDENTIF operator .)
+    PUNTO           reduce using rule 32 (special_expression -> NUMERO IDENTIF operator .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MAS in state 60 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 60 resolved as shift
+WARNING: shift/reduce conflict for POR in state 60 resolved as shift
+WARNING: shift/reduce conflict for ENTRE in state 60 resolved as shift
+WARNING: reduce/reduce conflict in state 28 resolved using rule (arg -> IDENTIF)
+WARNING: rejected rule (expression -> IDENTIF) in state 28
