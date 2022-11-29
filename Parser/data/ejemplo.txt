@@ -1,9 +1,0 @@
-INICIO.
-entero num1, num2.
-cadena x.
-real t20.
-Imprimir ("lea dos enteros").
-Leer (num1, num2).
-t20 = x.
-Imprimir("SUMA= ", t20).
-FIN.

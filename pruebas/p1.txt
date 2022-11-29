@@ -1,0 +1,10 @@
+INICIO.
+entero num1, num2, num3, num4.
+cadena x, y, z.
+real t20, t30.
+Imprimir("lea dos enteros",).
+Leer (num1, num2, num3).
+t30 = 50.87.
+t20 = (x + num4) * y - t30.
+Imprimir("SUMA= ", t20*20).
+FIN.

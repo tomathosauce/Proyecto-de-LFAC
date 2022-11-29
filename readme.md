@@ -1,7 +1,6 @@
 # Proyecto final de lenguajes
 
 ## Links utiles
-
 * https://www.geeksforgeeks.org/ply-python-lex-yacc-an-introduction/
 * **https://ply.readthedocs.io/en/latest/ply.html#error-handling**
 * https://www.skenz.it/compilers/ply
@@ -18,3 +17,9 @@
         * ```./.venv/scripts/activate```
     * Instalar PLY (Python-Lex-Yacc)
         * ```pip install ply```
+
+## Características
+- Sentencias de control IF y WHILE
+- Expresiones especiales
+- Declaraciones, asignaciones
+- Funciones LEER e IMPRIMIR disponibles

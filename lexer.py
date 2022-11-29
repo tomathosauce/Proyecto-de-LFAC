@@ -13,7 +13,18 @@ tokens = [
     'PUNTO',
     'COMA',
     'IDENTIF',
-    'CADENA_VALOR'
+    'CADENA_VALOR',
+    'MAYORQUE',
+    'MENORQUE',
+    'MAYOR_IGUAL',
+    'MENOR_IGUAL',
+    'EQUIVALE',
+    'DIFIERE',
+    'O',
+    'Y',
+    'NO',
+    'ABRE_RPN',
+    'CIERRA_RPN'
 ]
 
 t_MAS = r'\+'
@@ -25,6 +36,17 @@ t_PARDE = r'\)'
 t_IGUAL = r'\='
 t_PUNTO = r'\.'
 t_COMA = r'\,'
+t_MAYORQUE = r'\>'
+t_MENORQUE = r'\<'
+t_MAYOR_IGUAL = r'\>\='
+t_MENOR_IGUAL = r'\<\='
+t_EQUIVALE = r'\=\='
+t_DIFIERE = r'\!\='
+t_O = r'\|\|'
+t_Y = r'\&\&'
+t_NO = r'\!'
+t_ABRE_RPN = r'\['
+t_CIERRA_RPN = r'\]'
 
 t_ignore = ' \t\n'
 
@@ -35,7 +57,15 @@ reserved = {
    'FIN' : 'FIN',
    'entero': 'ENTERO',
    'real': 'REAL',
-   'cadena': 'CADENA'
+   'cadena': 'CADENA',
+   'booleano': 'BOOLEANO',
+   'mientras': 'MIENTRAS',
+   'cuando': 'CUANDO',
+   'sino': 'SINO',
+   'listo': 'LISTO',
+   'Cierto': 'CIERTO',
+   'Falso': 'FALSO',
+   'entonces': 'ENTONCES'
 }
 
 tokens = tokens + list(reserved.values())
@@ -70,6 +100,7 @@ def t_eof(t):
     return None
 
 lexer = lex.lex()
+
 def main():
     inputFile = input("File path: ")
     with open(inputFile, "r") as file:
@@ -77,7 +108,7 @@ def main():
 
         while True:
             tok = lexer.token()
-            if not tok: break      # No more input
+            if not tok: break
             print(tok)
 
 if __name__=="__main__":
