@@ -15,18 +15,18 @@ precedence = (
 
 # CUERPO DEL PROGRAMA
 def p_start(p):
-    """start : INICIO PUNTO list_sentences FIN PUNTO"""
+    """start : INICIO PUNTO list_sentences FIN PUNTO
+             | INICIO PUNTO FIN PUNTO"""
 
-# REGLA DE PRODUCCION PARA 0 O MAS SENTENCIAS
+# REGLA DE PRODUCCION PARA 1 O MAS SENTENCIAS
 def p_list_sentences(p):
-    """list_sentences   : 
-                        | list_sentences sentence
+    """list_sentences   : list_sentences sentence
                         | sentence"""
 
 # DEFINICION DE SENTENCIAS
 def p_sentence(p):
     """sentence : datatype list_id PUNTO
-                | control_statement PUNTO
+                | control_statement
                 | assignment_statement PUNTO
                 | system_function_call_statement PUNTO"""
                 
@@ -50,7 +50,6 @@ def p_while_statement(p):
 # SENTENCIAS DE ASIGNACION    
 def p_assignment_statement(p):
     """assignment_statement : IDENTIF IGUAL expression
-                            | IDENTIF IGUAL special_expression
                             | IDENTIF IGUAL CADENA_VALOR"""
                             
 # LLAMADAS A FUNCIONES DEL SISTEMA INCLUIDAS EN EL LENGUAJE                      
@@ -65,37 +64,8 @@ def p_list_arg(p):
             
 # DEFINICION DE ARGUMENTO DE FUNCION
 def p_arg(p):
-    """arg  : IDENTIF
-            | expression
+    """arg  : expression
             | CADENA_VALOR"""
-
-def p_operator(p):
-    """operator : arithmetic_operator
-                | logic_operator
-                | relational_operator
-                | equality_operator"""
-
-# OPERADORES ARITMETICOS
-def p_arithmetic_operator(p):
-    """arithmetic_operator  : MAS
-                            | MENOS
-                            | POR
-                            | ENTRE"""
-# OPERADORES LOGICOS
-def p_logic_operator(p):
-    """logic_operator   : O
-                        | Y
-                        | NO"""
-# OPERADORES RELACIONALES
-def p_relational_operator(p):
-    """relational_operator  : MAYORQUE
-                            | MENORQUE
-                            | MAYOR_IGUAL
-                            | MENOR_IGUAL"""
-
-def p_equality_operator(p):
-    """equality_operator  : EQUIVALE
-                            | DIFIERE"""
                             
 # TIPOS DE DATOS
 def p_datatype(p):
@@ -106,7 +76,18 @@ def p_datatype(p):
 
 # EXPRESIONES
 def p_expression(p):
-    """expression   : expression operator expression
+    """expression   : expression MAS expression
+                    | expression MENOS expression
+                    | expression POR expression
+                    | expression ENTRE expression
+                    | expression MAYORQUE expression
+                    | expression MENORQUE expression
+                    | expression MAYOR_IGUAL expression
+                    | expression MENOR_IGUAL expression
+                    | expression EQUIVALE expression
+                    | expression DIFIERE expression
+                    | expression O expression
+                    | expression Y expression
                     | PARIZ expression PARDE
                     | NO expression
                     | ABRE_RPN special_expression CIERRA_RPN
@@ -114,19 +95,23 @@ def p_expression(p):
                     | NUMERO
                     | boolean_value"""
                     
+def p_expression_uminus(p):
+    """expression : MENOS expression %prec UMINUS"""
+    
 def p_boolean_value(p):
     """boolean_value    : CIERTO
                         | FALSO"""
                     
-def p_expression_uminus(p):
-    """expression : MENOS expression %prec UMINUS"""
 
 # EXPRESIONES ESPECIALES
 def p_special_expression(p):
-    """special_expression   : IDENTIF IDENTIF operator
-                            | NUMERO NUMERO operator
-                            | NUMERO IDENTIF operator
-                            | IDENTIF NUMERO operator"""
+    """special_expression   : special_expression special_expression MAS
+                            | special_expression special_expression MENOS
+                            | special_expression special_expression POR
+                            | special_expression special_expression ENTRE
+                            | IDENTIF
+                            | NUMERO
+                            | boolean_value"""
 
 def p_error(p):
     raise SyntaxError
