@@ -26,7 +26,7 @@ Si la direccion contiene espacios, encerrarla con doble comillas (`"<direccion>"
 
 ## ¿Cómo compilar el programa?
 
-Con el comando
+Con el comando (asumiendo que la carpeta del ambiente virtual es `.venv`) 
 
 `pyinstaller main.py --onefile --paths=./.venv/Lib/site-packages --name=jaypp`
 
