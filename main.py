@@ -2,7 +2,7 @@ from lexer import lexer, tokens
 from parser import parser
 from os import path, getcwd, sep
 
-import argparse, re
+import argparse
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("direccion")
@@ -38,6 +38,7 @@ def main():
         print("="*30)
         
         parser.parse(data, debug=debug, lexer=lexer)
+        print("Sin errores 🥳")
             
 if __name__=="__main__":
     main()

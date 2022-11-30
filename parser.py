@@ -109,9 +109,21 @@ def p_special_expression(p):
                             | special_expression special_expression MENOS
                             | special_expression special_expression POR
                             | special_expression special_expression ENTRE
+                            | special_expression special_expression MAYORQUE
+                            | special_expression special_expression MENORQUE
+                            | special_expression special_expression MAYOR_IGUAL
+                            | special_expression special_expression MENOR_IGUAL
+                            | special_expression special_expression EQUIVALE 
+                            | special_expression special_expression DIFIERE 
+                            | special_expression special_expression O 
+                            | special_expression special_expression Y 
+                            | NO special_expression 
                             | IDENTIF
                             | NUMERO
                             | boolean_value"""
+
+def p_expression_uminus(p):
+    """special_expression : MENOS special_expression %prec UMINUS"""
 
 def p_error(p):
     if p != None:
