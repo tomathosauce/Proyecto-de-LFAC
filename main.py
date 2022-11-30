@@ -26,21 +26,18 @@ def main():
         if args.tokens:
             print("="*30)
             print("Tokens")
-            
-            lexer.input(data)
+            n_lexer = lexer.clone()
+            n_lexer.input(data)
             while True:
-                tok = lexer.token()
+                tok = n_lexer.token()
                 if not tok: break
                 print(tok)
             
         print("="*30)
         print("Analizando {}".format(inputFile))
         print("="*30)
-        try:
-            parser.parse(data, debug=debug, lexer=lexer)
-            print("Sin errores")
-        except Exception as e:
-            print("Errores de sintaxis encontrados")
+        
+        parser.parse(data, debug=debug, lexer=lexer)
             
 if __name__=="__main__":
     main()

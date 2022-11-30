@@ -114,7 +114,10 @@ def p_special_expression(p):
                             | boolean_value"""
 
 def p_error(p):
-    raise SyntaxError
+    if p != None:
+        raise SyntaxError("Error de sintaxis: Linea {}, Token '{}'".format(p.lineno, p.value))
+    else:
+        raise SyntaxError("Error de EOF: Linea ")
 
 parser = yacc.yacc()
 debug = False

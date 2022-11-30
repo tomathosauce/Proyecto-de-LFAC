@@ -13,6 +13,7 @@ tokens = [
     'PUNTO',
     'COMA',
     'IDENTIF',
+    'IDENTIF_ILEGAL',
     'CADENA_VALOR',
     'MAYORQUE',
     'MENORQUE',
@@ -48,7 +49,7 @@ t_NO = r'\!'
 t_ABRE_RPN = r'\['
 t_CIERRA_RPN = r'\]'
 
-t_ignore = ' \t\n'
+t_ignore = ' \t'
 
 reserved = {
    'Imprimir' : 'IMPRIMIR',
@@ -77,10 +78,13 @@ identificador = r'(' + letra + r'(' + digito + r'|' + letra + r')*)'
 #IDENTIFICADORES
 @TOKEN(identificador)
 def t_IDENTIF(t):
-    #r'[_A-Za-z]+'
     if t.value in reserved:
         t.type = reserved[ t.value ]
     return t
+
+@TOKEN(r'(' + digito + r'(' + digito + r'|' + letra + r')*'+letra+r'(' + digito + r'|' + letra + r')*)')
+def t_IDENTIF_ILEGAL(t):
+    raise SyntaxError("Identificador inválido: Línea {}".format(t.lineno+1))
 
 # NUMEROS (CON DECIMALES)
 def t_NUMERO(t):
@@ -91,6 +95,11 @@ def t_NUMERO(t):
 def t_CADENA_VALOR(t):
     r'\".[^"]*\"'
     return t
+
+# PARA LLEVAR LA CUENTA DEL NUMERO DE LINEA
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
 
 def t_error(t):
     print("Caracter ilegal {}".format(t.value))
