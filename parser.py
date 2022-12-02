@@ -135,19 +135,19 @@ parser = yacc.yacc()
 debug = False
 
 def main():
-    inputFile = input("File path: ")
+    inputFile = input("Ingrese la ruta del archivo: ")
     with open(inputFile) as file:
         data = file.read()
-        print("Data:")
+        print("Archivo:")
         print("="*30)
         print(data)
         print("="*30)
         print("Parsing {}...".format(inputFile))
         try:
             parser.parse(data, debug=debug)
-            print("Parse successfully")
+            print("👽 Parse Sin Errores 👽")
         except:
-            print("Syntax error")
+            print("👿 Error de Sintaxis 👿")
 
 if __name__=="__main__":
     main()
