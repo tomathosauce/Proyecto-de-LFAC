@@ -6,7 +6,7 @@ Esto es un programa (analizador léxico + analizador sintáctico) que reconoce e
 
 Si es el archivo `.py` escribir (sin los signos de mayor que e igual que)
 
-`python <direccion>`
+`python main.py <direccion>`
 
 Si es el ejecutable 
 
