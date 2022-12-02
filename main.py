@@ -1,5 +1,5 @@
 from lexer import lexer, tokens
-from parser import parser
+from parser_1 import parser
 from os import path, getcwd, sep
 
 import argparse
@@ -36,9 +36,15 @@ def main():
         print("="*30)
         print("Analizando {}".format(inputFile))
         print("="*30)
-        
-        parser.parse(data, debug=debug, lexer=lexer)
-        print("Sin errores 🥳")
+        try:
+            parser.parse(data, debug=debug, lexer=lexer)
+            print("👽 Sin errores 👽")
+        except Exception as e:
+            print("😡 Se encontraron problemas 😡")
+            if hasattr(e, 'message'):
+                print(e.message)
+            else:
+                print(e)
             
 if __name__=="__main__":
     main()
