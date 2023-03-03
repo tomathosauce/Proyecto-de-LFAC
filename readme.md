@@ -3,7 +3,7 @@
 ## Links utiles
 
 * https://www.geeksforgeeks.org/ply-python-lex-yacc-an-introduction/
-* **https://ply.readthedocs.io/en/latest/ply.html#error-handling**
+* **https://ply.readthedocs.io/en/latest/ply.html**
 * https://www.skenz.it/compilers/ply
 * https://riptutorial.com/python/example/31583/the--hello--world---of-ply---a-simple-calculator
 * https://my.eng.utah.edu/~cs3100/lectures/l14/ply-3.4/doc/ply.html
