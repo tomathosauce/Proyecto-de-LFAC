@@ -1,0 +1,3 @@
+INICIO.
+LEER(2 3 +).
+FIN.

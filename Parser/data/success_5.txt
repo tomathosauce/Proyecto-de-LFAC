@@ -1,4 +1,0 @@
-INICIO.
-num1 = 0 0 +.
-Imprimir(1 1 +, 2 2.5 -, "abc").
-FIN.

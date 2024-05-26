@@ -1,82 +1,50 @@
-import ply.lex as lex
-from ply.lex import TOKEN
+from lexer import lexer, tokens
+from parser_1 import parser
+from os import path, getcwd, sep
 
-tokens = [
-    'NUMERO',
-    'MAS',
-    'MENOS',
-    'POR',
-    'ENTRE',
-    'PARIZ', # PARENTESIS IZQUIERDO
-    'PARDE', # PARENTESIS DERECHO
-    'IGUAL',
-    'PUNTO',
-    'COMA',
-    'IDENTIF',
-    'CADENA'
-]
+import argparse
 
-t_MAS = r'\+'
-t_MENOS = r'\-'
-t_POR = r'\*'
-t_ENTRE = r'\/'
-t_PARIZ = r'\('
-t_PARDE = r'\)'
-t_IGUAL = r'\='
-t_PUNTO = r'\.'
-t_COMA = r'\,'
+argparser = argparse.ArgumentParser()
+argparser.add_argument("direccion")
+argparser.add_argument("--cwd", action="store_true")
+argparser.add_argument("--debug", action="store_true")
+argparser.add_argument("--tokens", action="store_true")
+args = argparser.parse_args()
 
-t_ignore = ' \t\n'
-
-reserved = {
-   'Imprimir' : 'IMPRIMIR',
-   'Leer' : 'LEER',
-   'INICIO' : 'INICIO',
-   'FIN' : 'FIN',
-   'entero': 'ENTERO',
-   'real': 'REAL',
-   'cadena': 'CADENA'
-}
-
-tokens = tokens + list(reserved.values())
-
-digito = r'(\d)'
-letra = r'([_A-Za-z])'
-identificador = r'(' + letra + r'(' + digito + r'|' + letra + r')*)'
-
-#IDENTIFICADORES
-@TOKEN(identificador)
-def t_IDENTIF(t):
-    #r'[_A-Za-z]+'
-    if t.value in reserved:
-        t.type = reserved[ t.value ]
-    return t
-# NUMEROS (CON DECIMALES)
-def t_NUMERO(t):
-    r'\d+(\.\d+)?'
-    return t
-
-# CADENAS
-def t_CADENA(t):
-    r'\".[^"]*\"'
-    return t
-
-def t_error(t):
-    print("Caracter ilegal {}".format(t.value))
-    t.lexer.skip(1)
+if args.cwd:
+    inputFile = path.join(getcwd(), args.direccion.replace('/', sep).replace('\\', sep))
+else:
+    inputFile = args.direccion
     
-def t_eof(t):
-    return None
-
-lexer = lex.lex()
-
-f = open("./pruebas/ejemplo.txt", "r")
-
-lexer.input(f.read())
-
-
-while True:
-    tok = lexer.token()
-    if not tok:
-        break      # No more input
-    print(tok)
+debug = args.debug
+def main():
+    with open(inputFile) as file:
+        data = file.read()
+        print("Data:")
+        print("="*30)
+        print(data)
+        if args.tokens:
+            print("="*30)
+            print("Tokens")
+            n_lexer = lexer.clone()
+            n_lexer.input(data)
+            while True:
+                tok = n_lexer.token()
+                if not tok: break
+                print(tok)
+            
+        print("="*30)
+        print("Analizando {}".format(inputFile))
+        print("="*30)
+        try:
+            parser.parse(data, debug=debug, lexer=lexer)
+            print("👽 Sin errores 👽")
+        except Exception as e:
+            print("😡 Se encontraron problemas 😡")
+            if hasattr(e, 'message'):
+                print(e.message)
+            else:
+                print(e)
+            
+if __name__=="__main__":
+    main()

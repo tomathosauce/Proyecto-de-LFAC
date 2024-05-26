@@ -1,0 +1,3246 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    IDENTIF_ILEGAL
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> INICIO PUNTO list_sentences FIN PUNTO
+Rule 2     start -> INICIO PUNTO FIN PUNTO
+Rule 3     list_sentences -> list_sentences sentence
+Rule 4     list_sentences -> sentence
+Rule 5     sentence -> datatype list_id PUNTO
+Rule 6     sentence -> control_statement
+Rule 7     sentence -> assignment_statement PUNTO
+Rule 8     sentence -> system_function_call_statement PUNTO
+Rule 9     list_id -> list_id COMA IDENTIF
+Rule 10    list_id -> IDENTIF
+Rule 11    control_statement -> if_statement
+Rule 12    control_statement -> while_statement
+Rule 13    if_statement -> CUANDO expression ENTONCES list_sentences LISTO
+Rule 14    if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+Rule 15    while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO
+Rule 16    assignment_statement -> IDENTIF IGUAL expression
+Rule 17    assignment_statement -> IDENTIF IGUAL CADENA_VALOR
+Rule 18    system_function_call_statement -> IMPRIMIR PARIZ list_arg PARDE
+Rule 19    system_function_call_statement -> LEER PARIZ list_id PARDE
+Rule 20    list_arg -> list_arg COMA arg
+Rule 21    list_arg -> arg
+Rule 22    arg -> expression
+Rule 23    arg -> CADENA_VALOR
+Rule 24    datatype -> ENTERO
+Rule 25    datatype -> CADENA
+Rule 26    datatype -> REAL
+Rule 27    datatype -> BOOLEANO
+Rule 28    expression -> expression MAS expression
+Rule 29    expression -> expression MENOS expression
+Rule 30    expression -> expression POR expression
+Rule 31    expression -> expression ENTRE expression
+Rule 32    expression -> expression MAYORQUE expression
+Rule 33    expression -> expression MENORQUE expression
+Rule 34    expression -> expression MAYOR_IGUAL expression
+Rule 35    expression -> expression MENOR_IGUAL expression
+Rule 36    expression -> expression EQUIVALE expression
+Rule 37    expression -> expression DIFIERE expression
+Rule 38    expression -> expression O expression
+Rule 39    expression -> expression Y expression
+Rule 40    expression -> PARIZ expression PARDE
+Rule 41    expression -> NO expression
+Rule 42    expression -> ABRE_RPN special_expression CIERRA_RPN
+Rule 43    expression -> IDENTIF
+Rule 44    expression -> NUMERO
+Rule 45    expression -> boolean_value
+Rule 46    boolean_value -> CIERTO
+Rule 47    boolean_value -> FALSO
+Rule 48    special_expression -> special_expression special_expression MAS
+Rule 49    special_expression -> special_expression special_expression MENOS
+Rule 50    special_expression -> special_expression special_expression POR
+Rule 51    special_expression -> special_expression special_expression ENTRE
+Rule 52    special_expression -> special_expression special_expression MAYORQUE
+Rule 53    special_expression -> special_expression special_expression MENORQUE
+Rule 54    special_expression -> special_expression special_expression MAYOR_IGUAL
+Rule 55    special_expression -> special_expression special_expression MENOR_IGUAL
+Rule 56    special_expression -> special_expression special_expression EQUIVALE
+Rule 57    special_expression -> special_expression special_expression DIFIERE
+Rule 58    special_expression -> special_expression special_expression O
+Rule 59    special_expression -> special_expression special_expression Y
+Rule 60    special_expression -> NO special_expression
+Rule 61    special_expression -> IDENTIF
+Rule 62    special_expression -> NUMERO
+Rule 63    special_expression -> boolean_value
+Rule 64    special_expression -> MENOS special_expression
+
+Terminals, with rules where they appear
+
+ABRE_RPN             : 42
+BOOLEANO             : 27
+CADENA               : 25
+CADENA_VALOR         : 17 23
+CIERRA_RPN           : 42
+CIERTO               : 46
+COMA                 : 9 20
+CUANDO               : 13 14
+DIFIERE              : 37 57
+ENTERO               : 24
+ENTONCES             : 13 14 15
+ENTRE                : 31 51
+EQUIVALE             : 36 56
+FALSO                : 47
+FIN                  : 1 2
+IDENTIF              : 9 10 16 17 43 61
+IDENTIF_ILEGAL       : 
+IGUAL                : 16 17
+IMPRIMIR             : 18
+INICIO               : 1 2
+LEER                 : 19
+LISTO                : 13 14 15
+MAS                  : 28 48
+MAYORQUE             : 32 52
+MAYOR_IGUAL          : 34 54
+MENORQUE             : 33 53
+MENOR_IGUAL          : 35 55
+MENOS                : 29 49 64
+MIENTRAS             : 15
+NO                   : 41 60
+NUMERO               : 44 62
+O                    : 38 58
+PARDE                : 18 19 40
+PARIZ                : 18 19 40
+POR                  : 30 50
+PUNTO                : 1 1 2 2 5 7 8
+REAL                 : 26
+SINO                 : 14
+Y                    : 39 59
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg                  : 20 21
+assignment_statement : 7
+boolean_value        : 45 63
+control_statement    : 6
+datatype             : 5
+expression           : 13 14 15 16 22 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 41
+if_statement         : 11
+list_arg             : 18 20
+list_id              : 5 9 19
+list_sentences       : 1 3 13 14 14 15
+sentence             : 3 4
+special_expression   : 42 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 58 58 59 59 60 64
+start                : 0
+system_function_call_statement : 8
+while_statement      : 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . INICIO PUNTO list_sentences FIN PUNTO
+    (2) start -> . INICIO PUNTO FIN PUNTO
+
+    INICIO          shift and go to state 2
+
+    start                          shift and go to state 1
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> INICIO . PUNTO list_sentences FIN PUNTO
+    (2) start -> INICIO . PUNTO FIN PUNTO
+
+    PUNTO           shift and go to state 3
+
+
+state 3
+
+    (1) start -> INICIO PUNTO . list_sentences FIN PUNTO
+    (2) start -> INICIO PUNTO . FIN PUNTO
+    (3) list_sentences -> . list_sentences sentence
+    (4) list_sentences -> . sentence
+    (5) sentence -> . datatype list_id PUNTO
+    (6) sentence -> . control_statement
+    (7) sentence -> . assignment_statement PUNTO
+    (8) sentence -> . system_function_call_statement PUNTO
+    (24) datatype -> . ENTERO
+    (25) datatype -> . CADENA
+    (26) datatype -> . REAL
+    (27) datatype -> . BOOLEANO
+    (11) control_statement -> . if_statement
+    (12) control_statement -> . while_statement
+    (16) assignment_statement -> . IDENTIF IGUAL expression
+    (17) assignment_statement -> . IDENTIF IGUAL CADENA_VALOR
+    (18) system_function_call_statement -> . IMPRIMIR PARIZ list_arg PARDE
+    (19) system_function_call_statement -> . LEER PARIZ list_id PARDE
+    (13) if_statement -> . CUANDO expression ENTONCES list_sentences LISTO
+    (14) if_statement -> . CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+    (15) while_statement -> . MIENTRAS expression ENTONCES list_sentences LISTO
+
+    FIN             shift and go to state 5
+    ENTERO          shift and go to state 11
+    CADENA          shift and go to state 12
+    REAL            shift and go to state 13
+    BOOLEANO        shift and go to state 14
+    IDENTIF         shift and go to state 17
+    IMPRIMIR        shift and go to state 18
+    LEER            shift and go to state 19
+    CUANDO          shift and go to state 20
+    MIENTRAS        shift and go to state 21
+
+    list_sentences                 shift and go to state 4
+    sentence                       shift and go to state 6
+    datatype                       shift and go to state 7
+    control_statement              shift and go to state 8
+    assignment_statement           shift and go to state 9
+    system_function_call_statement shift and go to state 10
+    if_statement                   shift and go to state 15
+    while_statement                shift and go to state 16
+
+state 4
+
+    (1) start -> INICIO PUNTO list_sentences . FIN PUNTO
+    (3) list_sentences -> list_sentences . sentence
+    (5) sentence -> . datatype list_id PUNTO
+    (6) sentence -> . control_statement
+    (7) sentence -> . assignment_statement PUNTO
+    (8) sentence -> . system_function_call_statement PUNTO
+    (24) datatype -> . ENTERO
+    (25) datatype -> . CADENA
+    (26) datatype -> . REAL
+    (27) datatype -> . BOOLEANO
+    (11) control_statement -> . if_statement
+    (12) control_statement -> . while_statement
+    (16) assignment_statement -> . IDENTIF IGUAL expression
+    (17) assignment_statement -> . IDENTIF IGUAL CADENA_VALOR
+    (18) system_function_call_statement -> . IMPRIMIR PARIZ list_arg PARDE
+    (19) system_function_call_statement -> . LEER PARIZ list_id PARDE
+    (13) if_statement -> . CUANDO expression ENTONCES list_sentences LISTO
+    (14) if_statement -> . CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+    (15) while_statement -> . MIENTRAS expression ENTONCES list_sentences LISTO
+
+    FIN             shift and go to state 22
+    ENTERO          shift and go to state 11
+    CADENA          shift and go to state 12
+    REAL            shift and go to state 13
+    BOOLEANO        shift and go to state 14
+    IDENTIF         shift and go to state 17
+    IMPRIMIR        shift and go to state 18
+    LEER            shift and go to state 19
+    CUANDO          shift and go to state 20
+    MIENTRAS        shift and go to state 21
+
+    sentence                       shift and go to state 23
+    datatype                       shift and go to state 7
+    control_statement              shift and go to state 8
+    assignment_statement           shift and go to state 9
+    system_function_call_statement shift and go to state 10
+    if_statement                   shift and go to state 15
+    while_statement                shift and go to state 16
+
+state 5
+
+    (2) start -> INICIO PUNTO FIN . PUNTO
+
+    PUNTO           shift and go to state 24
+
+
+state 6
+
+    (4) list_sentences -> sentence .
+
+    FIN             reduce using rule 4 (list_sentences -> sentence .)
+    ENTERO          reduce using rule 4 (list_sentences -> sentence .)
+    CADENA          reduce using rule 4 (list_sentences -> sentence .)
+    REAL            reduce using rule 4 (list_sentences -> sentence .)
+    BOOLEANO        reduce using rule 4 (list_sentences -> sentence .)
+    IDENTIF         reduce using rule 4 (list_sentences -> sentence .)
+    IMPRIMIR        reduce using rule 4 (list_sentences -> sentence .)
+    LEER            reduce using rule 4 (list_sentences -> sentence .)
+    CUANDO          reduce using rule 4 (list_sentences -> sentence .)
+    MIENTRAS        reduce using rule 4 (list_sentences -> sentence .)
+    LISTO           reduce using rule 4 (list_sentences -> sentence .)
+    SINO            reduce using rule 4 (list_sentences -> sentence .)
+
+
+state 7
+
+    (5) sentence -> datatype . list_id PUNTO
+    (9) list_id -> . list_id COMA IDENTIF
+    (10) list_id -> . IDENTIF
+
+    IDENTIF         shift and go to state 26
+
+    list_id                        shift and go to state 25
+
+state 8
+
+    (6) sentence -> control_statement .
+
+    FIN             reduce using rule 6 (sentence -> control_statement .)
+    ENTERO          reduce using rule 6 (sentence -> control_statement .)
+    CADENA          reduce using rule 6 (sentence -> control_statement .)
+    REAL            reduce using rule 6 (sentence -> control_statement .)
+    BOOLEANO        reduce using rule 6 (sentence -> control_statement .)
+    IDENTIF         reduce using rule 6 (sentence -> control_statement .)
+    IMPRIMIR        reduce using rule 6 (sentence -> control_statement .)
+    LEER            reduce using rule 6 (sentence -> control_statement .)
+    CUANDO          reduce using rule 6 (sentence -> control_statement .)
+    MIENTRAS        reduce using rule 6 (sentence -> control_statement .)
+    LISTO           reduce using rule 6 (sentence -> control_statement .)
+    SINO            reduce using rule 6 (sentence -> control_statement .)
+
+
+state 9
+
+    (7) sentence -> assignment_statement . PUNTO
+
+    PUNTO           shift and go to state 27
+
+
+state 10
+
+    (8) sentence -> system_function_call_statement . PUNTO
+
+    PUNTO           shift and go to state 28
+
+
+state 11
+
+    (24) datatype -> ENTERO .
+
+    IDENTIF         reduce using rule 24 (datatype -> ENTERO .)
+
+
+state 12
+
+    (25) datatype -> CADENA .
+
+    IDENTIF         reduce using rule 25 (datatype -> CADENA .)
+
+
+state 13
+
+    (26) datatype -> REAL .
+
+    IDENTIF         reduce using rule 26 (datatype -> REAL .)
+
+
+state 14
+
+    (27) datatype -> BOOLEANO .
+
+    IDENTIF         reduce using rule 27 (datatype -> BOOLEANO .)
+
+
+state 15
+
+    (11) control_statement -> if_statement .
+
+    FIN             reduce using rule 11 (control_statement -> if_statement .)
+    ENTERO          reduce using rule 11 (control_statement -> if_statement .)
+    CADENA          reduce using rule 11 (control_statement -> if_statement .)
+    REAL            reduce using rule 11 (control_statement -> if_statement .)
+    BOOLEANO        reduce using rule 11 (control_statement -> if_statement .)
+    IDENTIF         reduce using rule 11 (control_statement -> if_statement .)
+    IMPRIMIR        reduce using rule 11 (control_statement -> if_statement .)
+    LEER            reduce using rule 11 (control_statement -> if_statement .)
+    CUANDO          reduce using rule 11 (control_statement -> if_statement .)
+    MIENTRAS        reduce using rule 11 (control_statement -> if_statement .)
+    LISTO           reduce using rule 11 (control_statement -> if_statement .)
+    SINO            reduce using rule 11 (control_statement -> if_statement .)
+
+
+state 16
+
+    (12) control_statement -> while_statement .
+
+    FIN             reduce using rule 12 (control_statement -> while_statement .)
+    ENTERO          reduce using rule 12 (control_statement -> while_statement .)
+    CADENA          reduce using rule 12 (control_statement -> while_statement .)
+    REAL            reduce using rule 12 (control_statement -> while_statement .)
+    BOOLEANO        reduce using rule 12 (control_statement -> while_statement .)
+    IDENTIF         reduce using rule 12 (control_statement -> while_statement .)
+    IMPRIMIR        reduce using rule 12 (control_statement -> while_statement .)
+    LEER            reduce using rule 12 (control_statement -> while_statement .)
+    CUANDO          reduce using rule 12 (control_statement -> while_statement .)
+    MIENTRAS        reduce using rule 12 (control_statement -> while_statement .)
+    LISTO           reduce using rule 12 (control_statement -> while_statement .)
+    SINO            reduce using rule 12 (control_statement -> while_statement .)
+
+
+state 17
+
+    (16) assignment_statement -> IDENTIF . IGUAL expression
+    (17) assignment_statement -> IDENTIF . IGUAL CADENA_VALOR
+
+    IGUAL           shift and go to state 29
+
+
+state 18
+
+    (18) system_function_call_statement -> IMPRIMIR . PARIZ list_arg PARDE
+
+    PARIZ           shift and go to state 30
+
+
+state 19
+
+    (19) system_function_call_statement -> LEER . PARIZ list_id PARDE
+
+    PARIZ           shift and go to state 31
+
+
+state 20
+
+    (13) if_statement -> CUANDO . expression ENTONCES list_sentences LISTO
+    (14) if_statement -> CUANDO . expression ENTONCES list_sentences SINO list_sentences LISTO
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 32
+    boolean_value                  shift and go to state 38
+
+state 21
+
+    (15) while_statement -> MIENTRAS . expression ENTONCES list_sentences LISTO
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 41
+    boolean_value                  shift and go to state 38
+
+state 22
+
+    (1) start -> INICIO PUNTO list_sentences FIN . PUNTO
+
+    PUNTO           shift and go to state 42
+
+
+state 23
+
+    (3) list_sentences -> list_sentences sentence .
+
+    FIN             reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    ENTERO          reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    CADENA          reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    REAL            reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    BOOLEANO        reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    IDENTIF         reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    IMPRIMIR        reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    LEER            reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    CUANDO          reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    MIENTRAS        reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    LISTO           reduce using rule 3 (list_sentences -> list_sentences sentence .)
+    SINO            reduce using rule 3 (list_sentences -> list_sentences sentence .)
+
+
+state 24
+
+    (2) start -> INICIO PUNTO FIN PUNTO .
+
+    $end            reduce using rule 2 (start -> INICIO PUNTO FIN PUNTO .)
+
+
+state 25
+
+    (5) sentence -> datatype list_id . PUNTO
+    (9) list_id -> list_id . COMA IDENTIF
+
+    PUNTO           shift and go to state 43
+    COMA            shift and go to state 44
+
+
+state 26
+
+    (10) list_id -> IDENTIF .
+
+    PUNTO           reduce using rule 10 (list_id -> IDENTIF .)
+    COMA            reduce using rule 10 (list_id -> IDENTIF .)
+    PARDE           reduce using rule 10 (list_id -> IDENTIF .)
+
+
+state 27
+
+    (7) sentence -> assignment_statement PUNTO .
+
+    FIN             reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    ENTERO          reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    CADENA          reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    REAL            reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    BOOLEANO        reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    IDENTIF         reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    IMPRIMIR        reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    LEER            reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    CUANDO          reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    MIENTRAS        reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    LISTO           reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+    SINO            reduce using rule 7 (sentence -> assignment_statement PUNTO .)
+
+
+state 28
+
+    (8) sentence -> system_function_call_statement PUNTO .
+
+    FIN             reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    ENTERO          reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    CADENA          reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    REAL            reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    BOOLEANO        reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    IDENTIF         reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    IMPRIMIR        reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    LEER            reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    CUANDO          reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    MIENTRAS        reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    LISTO           reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+    SINO            reduce using rule 8 (sentence -> system_function_call_statement PUNTO .)
+
+
+state 29
+
+    (16) assignment_statement -> IDENTIF IGUAL . expression
+    (17) assignment_statement -> IDENTIF IGUAL . CADENA_VALOR
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    CADENA_VALOR    shift and go to state 46
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 45
+    boolean_value                  shift and go to state 38
+
+state 30
+
+    (18) system_function_call_statement -> IMPRIMIR PARIZ . list_arg PARDE
+    (20) list_arg -> . list_arg COMA arg
+    (21) list_arg -> . arg
+    (22) arg -> . expression
+    (23) arg -> . CADENA_VALOR
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    CADENA_VALOR    shift and go to state 50
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    list_arg                       shift and go to state 47
+    arg                            shift and go to state 48
+    expression                     shift and go to state 49
+    boolean_value                  shift and go to state 38
+
+state 31
+
+    (19) system_function_call_statement -> LEER PARIZ . list_id PARDE
+    (9) list_id -> . list_id COMA IDENTIF
+    (10) list_id -> . IDENTIF
+
+    IDENTIF         shift and go to state 26
+
+    list_id                        shift and go to state 51
+
+state 32
+
+    (13) if_statement -> CUANDO expression . ENTONCES list_sentences LISTO
+    (14) if_statement -> CUANDO expression . ENTONCES list_sentences SINO list_sentences LISTO
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        shift and go to state 52
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+    EQUIVALE        shift and go to state 61
+    DIFIERE         shift and go to state 62
+    O               shift and go to state 63
+    Y               shift and go to state 64
+
+
+state 33
+
+    (40) expression -> PARIZ . expression PARDE
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 65
+    boolean_value                  shift and go to state 38
+
+state 34
+
+    (41) expression -> NO . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 66
+    boolean_value                  shift and go to state 38
+
+state 35
+
+    (42) expression -> ABRE_RPN . special_expression CIERRA_RPN
+    (48) special_expression -> . special_expression special_expression MAS
+    (49) special_expression -> . special_expression special_expression MENOS
+    (50) special_expression -> . special_expression special_expression POR
+    (51) special_expression -> . special_expression special_expression ENTRE
+    (52) special_expression -> . special_expression special_expression MAYORQUE
+    (53) special_expression -> . special_expression special_expression MENORQUE
+    (54) special_expression -> . special_expression special_expression MAYOR_IGUAL
+    (55) special_expression -> . special_expression special_expression MENOR_IGUAL
+    (56) special_expression -> . special_expression special_expression EQUIVALE
+    (57) special_expression -> . special_expression special_expression DIFIERE
+    (58) special_expression -> . special_expression special_expression O
+    (59) special_expression -> . special_expression special_expression Y
+    (60) special_expression -> . NO special_expression
+    (61) special_expression -> . IDENTIF
+    (62) special_expression -> . NUMERO
+    (63) special_expression -> . boolean_value
+    (64) special_expression -> . MENOS special_expression
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    NO              shift and go to state 69
+    IDENTIF         shift and go to state 70
+    NUMERO          shift and go to state 71
+    MENOS           shift and go to state 68
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    special_expression             shift and go to state 67
+    boolean_value                  shift and go to state 72
+
+state 36
+
+    (43) expression -> IDENTIF .
+
+    ENTONCES        reduce using rule 43 (expression -> IDENTIF .)
+    MAS             reduce using rule 43 (expression -> IDENTIF .)
+    MENOS           reduce using rule 43 (expression -> IDENTIF .)
+    POR             reduce using rule 43 (expression -> IDENTIF .)
+    ENTRE           reduce using rule 43 (expression -> IDENTIF .)
+    MAYORQUE        reduce using rule 43 (expression -> IDENTIF .)
+    MENORQUE        reduce using rule 43 (expression -> IDENTIF .)
+    MAYOR_IGUAL     reduce using rule 43 (expression -> IDENTIF .)
+    MENOR_IGUAL     reduce using rule 43 (expression -> IDENTIF .)
+    EQUIVALE        reduce using rule 43 (expression -> IDENTIF .)
+    DIFIERE         reduce using rule 43 (expression -> IDENTIF .)
+    O               reduce using rule 43 (expression -> IDENTIF .)
+    Y               reduce using rule 43 (expression -> IDENTIF .)
+    PUNTO           reduce using rule 43 (expression -> IDENTIF .)
+    PARDE           reduce using rule 43 (expression -> IDENTIF .)
+    COMA            reduce using rule 43 (expression -> IDENTIF .)
+
+
+state 37
+
+    (44) expression -> NUMERO .
+
+    ENTONCES        reduce using rule 44 (expression -> NUMERO .)
+    MAS             reduce using rule 44 (expression -> NUMERO .)
+    MENOS           reduce using rule 44 (expression -> NUMERO .)
+    POR             reduce using rule 44 (expression -> NUMERO .)
+    ENTRE           reduce using rule 44 (expression -> NUMERO .)
+    MAYORQUE        reduce using rule 44 (expression -> NUMERO .)
+    MENORQUE        reduce using rule 44 (expression -> NUMERO .)
+    MAYOR_IGUAL     reduce using rule 44 (expression -> NUMERO .)
+    MENOR_IGUAL     reduce using rule 44 (expression -> NUMERO .)
+    EQUIVALE        reduce using rule 44 (expression -> NUMERO .)
+    DIFIERE         reduce using rule 44 (expression -> NUMERO .)
+    O               reduce using rule 44 (expression -> NUMERO .)
+    Y               reduce using rule 44 (expression -> NUMERO .)
+    PUNTO           reduce using rule 44 (expression -> NUMERO .)
+    PARDE           reduce using rule 44 (expression -> NUMERO .)
+    COMA            reduce using rule 44 (expression -> NUMERO .)
+
+
+state 38
+
+    (45) expression -> boolean_value .
+
+    ENTONCES        reduce using rule 45 (expression -> boolean_value .)
+    MAS             reduce using rule 45 (expression -> boolean_value .)
+    MENOS           reduce using rule 45 (expression -> boolean_value .)
+    POR             reduce using rule 45 (expression -> boolean_value .)
+    ENTRE           reduce using rule 45 (expression -> boolean_value .)
+    MAYORQUE        reduce using rule 45 (expression -> boolean_value .)
+    MENORQUE        reduce using rule 45 (expression -> boolean_value .)
+    MAYOR_IGUAL     reduce using rule 45 (expression -> boolean_value .)
+    MENOR_IGUAL     reduce using rule 45 (expression -> boolean_value .)
+    EQUIVALE        reduce using rule 45 (expression -> boolean_value .)
+    DIFIERE         reduce using rule 45 (expression -> boolean_value .)
+    O               reduce using rule 45 (expression -> boolean_value .)
+    Y               reduce using rule 45 (expression -> boolean_value .)
+    PUNTO           reduce using rule 45 (expression -> boolean_value .)
+    PARDE           reduce using rule 45 (expression -> boolean_value .)
+    COMA            reduce using rule 45 (expression -> boolean_value .)
+
+
+state 39
+
+    (46) boolean_value -> CIERTO .
+
+    ENTONCES        reduce using rule 46 (boolean_value -> CIERTO .)
+    MAS             reduce using rule 46 (boolean_value -> CIERTO .)
+    MENOS           reduce using rule 46 (boolean_value -> CIERTO .)
+    POR             reduce using rule 46 (boolean_value -> CIERTO .)
+    ENTRE           reduce using rule 46 (boolean_value -> CIERTO .)
+    MAYORQUE        reduce using rule 46 (boolean_value -> CIERTO .)
+    MENORQUE        reduce using rule 46 (boolean_value -> CIERTO .)
+    MAYOR_IGUAL     reduce using rule 46 (boolean_value -> CIERTO .)
+    MENOR_IGUAL     reduce using rule 46 (boolean_value -> CIERTO .)
+    EQUIVALE        reduce using rule 46 (boolean_value -> CIERTO .)
+    DIFIERE         reduce using rule 46 (boolean_value -> CIERTO .)
+    O               reduce using rule 46 (boolean_value -> CIERTO .)
+    Y               reduce using rule 46 (boolean_value -> CIERTO .)
+    PUNTO           reduce using rule 46 (boolean_value -> CIERTO .)
+    PARDE           reduce using rule 46 (boolean_value -> CIERTO .)
+    COMA            reduce using rule 46 (boolean_value -> CIERTO .)
+    CIERRA_RPN      reduce using rule 46 (boolean_value -> CIERTO .)
+    NO              reduce using rule 46 (boolean_value -> CIERTO .)
+    IDENTIF         reduce using rule 46 (boolean_value -> CIERTO .)
+    NUMERO          reduce using rule 46 (boolean_value -> CIERTO .)
+    CIERTO          reduce using rule 46 (boolean_value -> CIERTO .)
+    FALSO           reduce using rule 46 (boolean_value -> CIERTO .)
+
+
+state 40
+
+    (47) boolean_value -> FALSO .
+
+    ENTONCES        reduce using rule 47 (boolean_value -> FALSO .)
+    MAS             reduce using rule 47 (boolean_value -> FALSO .)
+    MENOS           reduce using rule 47 (boolean_value -> FALSO .)
+    POR             reduce using rule 47 (boolean_value -> FALSO .)
+    ENTRE           reduce using rule 47 (boolean_value -> FALSO .)
+    MAYORQUE        reduce using rule 47 (boolean_value -> FALSO .)
+    MENORQUE        reduce using rule 47 (boolean_value -> FALSO .)
+    MAYOR_IGUAL     reduce using rule 47 (boolean_value -> FALSO .)
+    MENOR_IGUAL     reduce using rule 47 (boolean_value -> FALSO .)
+    EQUIVALE        reduce using rule 47 (boolean_value -> FALSO .)
+    DIFIERE         reduce using rule 47 (boolean_value -> FALSO .)
+    O               reduce using rule 47 (boolean_value -> FALSO .)
+    Y               reduce using rule 47 (boolean_value -> FALSO .)
+    PUNTO           reduce using rule 47 (boolean_value -> FALSO .)
+    PARDE           reduce using rule 47 (boolean_value -> FALSO .)
+    COMA            reduce using rule 47 (boolean_value -> FALSO .)
+    CIERRA_RPN      reduce using rule 47 (boolean_value -> FALSO .)
+    NO              reduce using rule 47 (boolean_value -> FALSO .)
+    IDENTIF         reduce using rule 47 (boolean_value -> FALSO .)
+    NUMERO          reduce using rule 47 (boolean_value -> FALSO .)
+    CIERTO          reduce using rule 47 (boolean_value -> FALSO .)
+    FALSO           reduce using rule 47 (boolean_value -> FALSO .)
+
+
+state 41
+
+    (15) while_statement -> MIENTRAS expression . ENTONCES list_sentences LISTO
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        shift and go to state 73
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+    EQUIVALE        shift and go to state 61
+    DIFIERE         shift and go to state 62
+    O               shift and go to state 63
+    Y               shift and go to state 64
+
+
+state 42
+
+    (1) start -> INICIO PUNTO list_sentences FIN PUNTO .
+
+    $end            reduce using rule 1 (start -> INICIO PUNTO list_sentences FIN PUNTO .)
+
+
+state 43
+
+    (5) sentence -> datatype list_id PUNTO .
+
+    FIN             reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    ENTERO          reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    CADENA          reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    REAL            reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    BOOLEANO        reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    IDENTIF         reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    IMPRIMIR        reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    LEER            reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    CUANDO          reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    MIENTRAS        reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    LISTO           reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+    SINO            reduce using rule 5 (sentence -> datatype list_id PUNTO .)
+
+
+state 44
+
+    (9) list_id -> list_id COMA . IDENTIF
+
+    IDENTIF         shift and go to state 74
+
+
+state 45
+
+    (16) assignment_statement -> IDENTIF IGUAL expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    PUNTO           reduce using rule 16 (assignment_statement -> IDENTIF IGUAL expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+    EQUIVALE        shift and go to state 61
+    DIFIERE         shift and go to state 62
+    O               shift and go to state 63
+    Y               shift and go to state 64
+
+
+state 46
+
+    (17) assignment_statement -> IDENTIF IGUAL CADENA_VALOR .
+
+    PUNTO           reduce using rule 17 (assignment_statement -> IDENTIF IGUAL CADENA_VALOR .)
+
+
+state 47
+
+    (18) system_function_call_statement -> IMPRIMIR PARIZ list_arg . PARDE
+    (20) list_arg -> list_arg . COMA arg
+
+    PARDE           shift and go to state 75
+    COMA            shift and go to state 76
+
+
+state 48
+
+    (21) list_arg -> arg .
+
+    PARDE           reduce using rule 21 (list_arg -> arg .)
+    COMA            reduce using rule 21 (list_arg -> arg .)
+
+
+state 49
+
+    (22) arg -> expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    PARDE           reduce using rule 22 (arg -> expression .)
+    COMA            reduce using rule 22 (arg -> expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+    EQUIVALE        shift and go to state 61
+    DIFIERE         shift and go to state 62
+    O               shift and go to state 63
+    Y               shift and go to state 64
+
+
+state 50
+
+    (23) arg -> CADENA_VALOR .
+
+    PARDE           reduce using rule 23 (arg -> CADENA_VALOR .)
+    COMA            reduce using rule 23 (arg -> CADENA_VALOR .)
+
+
+state 51
+
+    (19) system_function_call_statement -> LEER PARIZ list_id . PARDE
+    (9) list_id -> list_id . COMA IDENTIF
+
+    PARDE           shift and go to state 77
+    COMA            shift and go to state 44
+
+
+state 52
+
+    (13) if_statement -> CUANDO expression ENTONCES . list_sentences LISTO
+    (14) if_statement -> CUANDO expression ENTONCES . list_sentences SINO list_sentences LISTO
+    (3) list_sentences -> . list_sentences sentence
+    (4) list_sentences -> . sentence
+    (5) sentence -> . datatype list_id PUNTO
+    (6) sentence -> . control_statement
+    (7) sentence -> . assignment_statement PUNTO
+    (8) sentence -> . system_function_call_statement PUNTO
+    (24) datatype -> . ENTERO
+    (25) datatype -> . CADENA
+    (26) datatype -> . REAL
+    (27) datatype -> . BOOLEANO
+    (11) control_statement -> . if_statement
+    (12) control_statement -> . while_statement
+    (16) assignment_statement -> . IDENTIF IGUAL expression
+    (17) assignment_statement -> . IDENTIF IGUAL CADENA_VALOR
+    (18) system_function_call_statement -> . IMPRIMIR PARIZ list_arg PARDE
+    (19) system_function_call_statement -> . LEER PARIZ list_id PARDE
+    (13) if_statement -> . CUANDO expression ENTONCES list_sentences LISTO
+    (14) if_statement -> . CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+    (15) while_statement -> . MIENTRAS expression ENTONCES list_sentences LISTO
+
+    ENTERO          shift and go to state 11
+    CADENA          shift and go to state 12
+    REAL            shift and go to state 13
+    BOOLEANO        shift and go to state 14
+    IDENTIF         shift and go to state 17
+    IMPRIMIR        shift and go to state 18
+    LEER            shift and go to state 19
+    CUANDO          shift and go to state 20
+    MIENTRAS        shift and go to state 21
+
+    list_sentences                 shift and go to state 78
+    sentence                       shift and go to state 6
+    datatype                       shift and go to state 7
+    control_statement              shift and go to state 8
+    assignment_statement           shift and go to state 9
+    system_function_call_statement shift and go to state 10
+    if_statement                   shift and go to state 15
+    while_statement                shift and go to state 16
+
+state 53
+
+    (28) expression -> expression MAS . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 79
+    boolean_value                  shift and go to state 38
+
+state 54
+
+    (29) expression -> expression MENOS . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 80
+    boolean_value                  shift and go to state 38
+
+state 55
+
+    (30) expression -> expression POR . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 81
+    boolean_value                  shift and go to state 38
+
+state 56
+
+    (31) expression -> expression ENTRE . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 82
+    boolean_value                  shift and go to state 38
+
+state 57
+
+    (32) expression -> expression MAYORQUE . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 83
+    boolean_value                  shift and go to state 38
+
+state 58
+
+    (33) expression -> expression MENORQUE . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 84
+    boolean_value                  shift and go to state 38
+
+state 59
+
+    (34) expression -> expression MAYOR_IGUAL . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 85
+    boolean_value                  shift and go to state 38
+
+state 60
+
+    (35) expression -> expression MENOR_IGUAL . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 86
+    boolean_value                  shift and go to state 38
+
+state 61
+
+    (36) expression -> expression EQUIVALE . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 87
+    boolean_value                  shift and go to state 38
+
+state 62
+
+    (37) expression -> expression DIFIERE . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 88
+    boolean_value                  shift and go to state 38
+
+state 63
+
+    (38) expression -> expression O . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 89
+    boolean_value                  shift and go to state 38
+
+state 64
+
+    (39) expression -> expression Y . expression
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    expression                     shift and go to state 90
+    boolean_value                  shift and go to state 38
+
+state 65
+
+    (40) expression -> PARIZ expression . PARDE
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    PARDE           shift and go to state 91
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+    EQUIVALE        shift and go to state 61
+    DIFIERE         shift and go to state 62
+    O               shift and go to state 63
+    Y               shift and go to state 64
+
+
+state 66
+
+    (41) expression -> NO expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 41 (expression -> NO expression .)
+    PUNTO           reduce using rule 41 (expression -> NO expression .)
+    PARDE           reduce using rule 41 (expression -> NO expression .)
+    COMA            reduce using rule 41 (expression -> NO expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+    EQUIVALE        shift and go to state 61
+    DIFIERE         shift and go to state 62
+    O               shift and go to state 63
+    Y               shift and go to state 64
+
+  ! MAS             [ reduce using rule 41 (expression -> NO expression .) ]
+  ! MENOS           [ reduce using rule 41 (expression -> NO expression .) ]
+  ! POR             [ reduce using rule 41 (expression -> NO expression .) ]
+  ! ENTRE           [ reduce using rule 41 (expression -> NO expression .) ]
+  ! MAYORQUE        [ reduce using rule 41 (expression -> NO expression .) ]
+  ! MENORQUE        [ reduce using rule 41 (expression -> NO expression .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 41 (expression -> NO expression .) ]
+  ! MENOR_IGUAL     [ reduce using rule 41 (expression -> NO expression .) ]
+  ! EQUIVALE        [ reduce using rule 41 (expression -> NO expression .) ]
+  ! DIFIERE         [ reduce using rule 41 (expression -> NO expression .) ]
+  ! O               [ reduce using rule 41 (expression -> NO expression .) ]
+  ! Y               [ reduce using rule 41 (expression -> NO expression .) ]
+
+
+state 67
+
+    (42) expression -> ABRE_RPN special_expression . CIERRA_RPN
+    (48) special_expression -> special_expression . special_expression MAS
+    (49) special_expression -> special_expression . special_expression MENOS
+    (50) special_expression -> special_expression . special_expression POR
+    (51) special_expression -> special_expression . special_expression ENTRE
+    (52) special_expression -> special_expression . special_expression MAYORQUE
+    (53) special_expression -> special_expression . special_expression MENORQUE
+    (54) special_expression -> special_expression . special_expression MAYOR_IGUAL
+    (55) special_expression -> special_expression . special_expression MENOR_IGUAL
+    (56) special_expression -> special_expression . special_expression EQUIVALE
+    (57) special_expression -> special_expression . special_expression DIFIERE
+    (58) special_expression -> special_expression . special_expression O
+    (59) special_expression -> special_expression . special_expression Y
+    (48) special_expression -> . special_expression special_expression MAS
+    (49) special_expression -> . special_expression special_expression MENOS
+    (50) special_expression -> . special_expression special_expression POR
+    (51) special_expression -> . special_expression special_expression ENTRE
+    (52) special_expression -> . special_expression special_expression MAYORQUE
+    (53) special_expression -> . special_expression special_expression MENORQUE
+    (54) special_expression -> . special_expression special_expression MAYOR_IGUAL
+    (55) special_expression -> . special_expression special_expression MENOR_IGUAL
+    (56) special_expression -> . special_expression special_expression EQUIVALE
+    (57) special_expression -> . special_expression special_expression DIFIERE
+    (58) special_expression -> . special_expression special_expression O
+    (59) special_expression -> . special_expression special_expression Y
+    (60) special_expression -> . NO special_expression
+    (61) special_expression -> . IDENTIF
+    (62) special_expression -> . NUMERO
+    (63) special_expression -> . boolean_value
+    (64) special_expression -> . MENOS special_expression
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    CIERRA_RPN      shift and go to state 93
+    NO              shift and go to state 69
+    IDENTIF         shift and go to state 70
+    NUMERO          shift and go to state 71
+    MENOS           shift and go to state 68
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    special_expression             shift and go to state 92
+    boolean_value                  shift and go to state 72
+
+state 68
+
+    (64) special_expression -> MENOS . special_expression
+    (48) special_expression -> . special_expression special_expression MAS
+    (49) special_expression -> . special_expression special_expression MENOS
+    (50) special_expression -> . special_expression special_expression POR
+    (51) special_expression -> . special_expression special_expression ENTRE
+    (52) special_expression -> . special_expression special_expression MAYORQUE
+    (53) special_expression -> . special_expression special_expression MENORQUE
+    (54) special_expression -> . special_expression special_expression MAYOR_IGUAL
+    (55) special_expression -> . special_expression special_expression MENOR_IGUAL
+    (56) special_expression -> . special_expression special_expression EQUIVALE
+    (57) special_expression -> . special_expression special_expression DIFIERE
+    (58) special_expression -> . special_expression special_expression O
+    (59) special_expression -> . special_expression special_expression Y
+    (60) special_expression -> . NO special_expression
+    (61) special_expression -> . IDENTIF
+    (62) special_expression -> . NUMERO
+    (63) special_expression -> . boolean_value
+    (64) special_expression -> . MENOS special_expression
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    NO              shift and go to state 69
+    IDENTIF         shift and go to state 70
+    NUMERO          shift and go to state 71
+    MENOS           shift and go to state 68
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    special_expression             shift and go to state 94
+    boolean_value                  shift and go to state 72
+
+state 69
+
+    (60) special_expression -> NO . special_expression
+    (48) special_expression -> . special_expression special_expression MAS
+    (49) special_expression -> . special_expression special_expression MENOS
+    (50) special_expression -> . special_expression special_expression POR
+    (51) special_expression -> . special_expression special_expression ENTRE
+    (52) special_expression -> . special_expression special_expression MAYORQUE
+    (53) special_expression -> . special_expression special_expression MENORQUE
+    (54) special_expression -> . special_expression special_expression MAYOR_IGUAL
+    (55) special_expression -> . special_expression special_expression MENOR_IGUAL
+    (56) special_expression -> . special_expression special_expression EQUIVALE
+    (57) special_expression -> . special_expression special_expression DIFIERE
+    (58) special_expression -> . special_expression special_expression O
+    (59) special_expression -> . special_expression special_expression Y
+    (60) special_expression -> . NO special_expression
+    (61) special_expression -> . IDENTIF
+    (62) special_expression -> . NUMERO
+    (63) special_expression -> . boolean_value
+    (64) special_expression -> . MENOS special_expression
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    NO              shift and go to state 69
+    IDENTIF         shift and go to state 70
+    NUMERO          shift and go to state 71
+    MENOS           shift and go to state 68
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    special_expression             shift and go to state 95
+    boolean_value                  shift and go to state 72
+
+state 70
+
+    (61) special_expression -> IDENTIF .
+
+    CIERRA_RPN      reduce using rule 61 (special_expression -> IDENTIF .)
+    NO              reduce using rule 61 (special_expression -> IDENTIF .)
+    IDENTIF         reduce using rule 61 (special_expression -> IDENTIF .)
+    NUMERO          reduce using rule 61 (special_expression -> IDENTIF .)
+    MENOS           reduce using rule 61 (special_expression -> IDENTIF .)
+    CIERTO          reduce using rule 61 (special_expression -> IDENTIF .)
+    FALSO           reduce using rule 61 (special_expression -> IDENTIF .)
+    MAS             reduce using rule 61 (special_expression -> IDENTIF .)
+    POR             reduce using rule 61 (special_expression -> IDENTIF .)
+    ENTRE           reduce using rule 61 (special_expression -> IDENTIF .)
+    MAYORQUE        reduce using rule 61 (special_expression -> IDENTIF .)
+    MENORQUE        reduce using rule 61 (special_expression -> IDENTIF .)
+    MAYOR_IGUAL     reduce using rule 61 (special_expression -> IDENTIF .)
+    MENOR_IGUAL     reduce using rule 61 (special_expression -> IDENTIF .)
+    EQUIVALE        reduce using rule 61 (special_expression -> IDENTIF .)
+    DIFIERE         reduce using rule 61 (special_expression -> IDENTIF .)
+    O               reduce using rule 61 (special_expression -> IDENTIF .)
+    Y               reduce using rule 61 (special_expression -> IDENTIF .)
+
+
+state 71
+
+    (62) special_expression -> NUMERO .
+
+    CIERRA_RPN      reduce using rule 62 (special_expression -> NUMERO .)
+    NO              reduce using rule 62 (special_expression -> NUMERO .)
+    IDENTIF         reduce using rule 62 (special_expression -> NUMERO .)
+    NUMERO          reduce using rule 62 (special_expression -> NUMERO .)
+    MENOS           reduce using rule 62 (special_expression -> NUMERO .)
+    CIERTO          reduce using rule 62 (special_expression -> NUMERO .)
+    FALSO           reduce using rule 62 (special_expression -> NUMERO .)
+    MAS             reduce using rule 62 (special_expression -> NUMERO .)
+    POR             reduce using rule 62 (special_expression -> NUMERO .)
+    ENTRE           reduce using rule 62 (special_expression -> NUMERO .)
+    MAYORQUE        reduce using rule 62 (special_expression -> NUMERO .)
+    MENORQUE        reduce using rule 62 (special_expression -> NUMERO .)
+    MAYOR_IGUAL     reduce using rule 62 (special_expression -> NUMERO .)
+    MENOR_IGUAL     reduce using rule 62 (special_expression -> NUMERO .)
+    EQUIVALE        reduce using rule 62 (special_expression -> NUMERO .)
+    DIFIERE         reduce using rule 62 (special_expression -> NUMERO .)
+    O               reduce using rule 62 (special_expression -> NUMERO .)
+    Y               reduce using rule 62 (special_expression -> NUMERO .)
+
+
+state 72
+
+    (63) special_expression -> boolean_value .
+
+    CIERRA_RPN      reduce using rule 63 (special_expression -> boolean_value .)
+    NO              reduce using rule 63 (special_expression -> boolean_value .)
+    IDENTIF         reduce using rule 63 (special_expression -> boolean_value .)
+    NUMERO          reduce using rule 63 (special_expression -> boolean_value .)
+    MENOS           reduce using rule 63 (special_expression -> boolean_value .)
+    CIERTO          reduce using rule 63 (special_expression -> boolean_value .)
+    FALSO           reduce using rule 63 (special_expression -> boolean_value .)
+    MAS             reduce using rule 63 (special_expression -> boolean_value .)
+    POR             reduce using rule 63 (special_expression -> boolean_value .)
+    ENTRE           reduce using rule 63 (special_expression -> boolean_value .)
+    MAYORQUE        reduce using rule 63 (special_expression -> boolean_value .)
+    MENORQUE        reduce using rule 63 (special_expression -> boolean_value .)
+    MAYOR_IGUAL     reduce using rule 63 (special_expression -> boolean_value .)
+    MENOR_IGUAL     reduce using rule 63 (special_expression -> boolean_value .)
+    EQUIVALE        reduce using rule 63 (special_expression -> boolean_value .)
+    DIFIERE         reduce using rule 63 (special_expression -> boolean_value .)
+    O               reduce using rule 63 (special_expression -> boolean_value .)
+    Y               reduce using rule 63 (special_expression -> boolean_value .)
+
+
+state 73
+
+    (15) while_statement -> MIENTRAS expression ENTONCES . list_sentences LISTO
+    (3) list_sentences -> . list_sentences sentence
+    (4) list_sentences -> . sentence
+    (5) sentence -> . datatype list_id PUNTO
+    (6) sentence -> . control_statement
+    (7) sentence -> . assignment_statement PUNTO
+    (8) sentence -> . system_function_call_statement PUNTO
+    (24) datatype -> . ENTERO
+    (25) datatype -> . CADENA
+    (26) datatype -> . REAL
+    (27) datatype -> . BOOLEANO
+    (11) control_statement -> . if_statement
+    (12) control_statement -> . while_statement
+    (16) assignment_statement -> . IDENTIF IGUAL expression
+    (17) assignment_statement -> . IDENTIF IGUAL CADENA_VALOR
+    (18) system_function_call_statement -> . IMPRIMIR PARIZ list_arg PARDE
+    (19) system_function_call_statement -> . LEER PARIZ list_id PARDE
+    (13) if_statement -> . CUANDO expression ENTONCES list_sentences LISTO
+    (14) if_statement -> . CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+    (15) while_statement -> . MIENTRAS expression ENTONCES list_sentences LISTO
+
+    ENTERO          shift and go to state 11
+    CADENA          shift and go to state 12
+    REAL            shift and go to state 13
+    BOOLEANO        shift and go to state 14
+    IDENTIF         shift and go to state 17
+    IMPRIMIR        shift and go to state 18
+    LEER            shift and go to state 19
+    CUANDO          shift and go to state 20
+    MIENTRAS        shift and go to state 21
+
+    list_sentences                 shift and go to state 96
+    sentence                       shift and go to state 6
+    datatype                       shift and go to state 7
+    control_statement              shift and go to state 8
+    assignment_statement           shift and go to state 9
+    system_function_call_statement shift and go to state 10
+    if_statement                   shift and go to state 15
+    while_statement                shift and go to state 16
+
+state 74
+
+    (9) list_id -> list_id COMA IDENTIF .
+
+    PUNTO           reduce using rule 9 (list_id -> list_id COMA IDENTIF .)
+    COMA            reduce using rule 9 (list_id -> list_id COMA IDENTIF .)
+    PARDE           reduce using rule 9 (list_id -> list_id COMA IDENTIF .)
+
+
+state 75
+
+    (18) system_function_call_statement -> IMPRIMIR PARIZ list_arg PARDE .
+
+    PUNTO           reduce using rule 18 (system_function_call_statement -> IMPRIMIR PARIZ list_arg PARDE .)
+
+
+state 76
+
+    (20) list_arg -> list_arg COMA . arg
+    (22) arg -> . expression
+    (23) arg -> . CADENA_VALOR
+    (28) expression -> . expression MAS expression
+    (29) expression -> . expression MENOS expression
+    (30) expression -> . expression POR expression
+    (31) expression -> . expression ENTRE expression
+    (32) expression -> . expression MAYORQUE expression
+    (33) expression -> . expression MENORQUE expression
+    (34) expression -> . expression MAYOR_IGUAL expression
+    (35) expression -> . expression MENOR_IGUAL expression
+    (36) expression -> . expression EQUIVALE expression
+    (37) expression -> . expression DIFIERE expression
+    (38) expression -> . expression O expression
+    (39) expression -> . expression Y expression
+    (40) expression -> . PARIZ expression PARDE
+    (41) expression -> . NO expression
+    (42) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (43) expression -> . IDENTIF
+    (44) expression -> . NUMERO
+    (45) expression -> . boolean_value
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    CADENA_VALOR    shift and go to state 50
+    PARIZ           shift and go to state 33
+    NO              shift and go to state 34
+    ABRE_RPN        shift and go to state 35
+    IDENTIF         shift and go to state 36
+    NUMERO          shift and go to state 37
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    arg                            shift and go to state 97
+    expression                     shift and go to state 49
+    boolean_value                  shift and go to state 38
+
+state 77
+
+    (19) system_function_call_statement -> LEER PARIZ list_id PARDE .
+
+    PUNTO           reduce using rule 19 (system_function_call_statement -> LEER PARIZ list_id PARDE .)
+
+
+state 78
+
+    (13) if_statement -> CUANDO expression ENTONCES list_sentences . LISTO
+    (14) if_statement -> CUANDO expression ENTONCES list_sentences . SINO list_sentences LISTO
+    (3) list_sentences -> list_sentences . sentence
+    (5) sentence -> . datatype list_id PUNTO
+    (6) sentence -> . control_statement
+    (7) sentence -> . assignment_statement PUNTO
+    (8) sentence -> . system_function_call_statement PUNTO
+    (24) datatype -> . ENTERO
+    (25) datatype -> . CADENA
+    (26) datatype -> . REAL
+    (27) datatype -> . BOOLEANO
+    (11) control_statement -> . if_statement
+    (12) control_statement -> . while_statement
+    (16) assignment_statement -> . IDENTIF IGUAL expression
+    (17) assignment_statement -> . IDENTIF IGUAL CADENA_VALOR
+    (18) system_function_call_statement -> . IMPRIMIR PARIZ list_arg PARDE
+    (19) system_function_call_statement -> . LEER PARIZ list_id PARDE
+    (13) if_statement -> . CUANDO expression ENTONCES list_sentences LISTO
+    (14) if_statement -> . CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+    (15) while_statement -> . MIENTRAS expression ENTONCES list_sentences LISTO
+
+    LISTO           shift and go to state 98
+    SINO            shift and go to state 99
+    ENTERO          shift and go to state 11
+    CADENA          shift and go to state 12
+    REAL            shift and go to state 13
+    BOOLEANO        shift and go to state 14
+    IDENTIF         shift and go to state 17
+    IMPRIMIR        shift and go to state 18
+    LEER            shift and go to state 19
+    CUANDO          shift and go to state 20
+    MIENTRAS        shift and go to state 21
+
+    sentence                       shift and go to state 23
+    datatype                       shift and go to state 7
+    control_statement              shift and go to state 8
+    assignment_statement           shift and go to state 9
+    system_function_call_statement shift and go to state 10
+    if_statement                   shift and go to state 15
+    while_statement                shift and go to state 16
+
+state 79
+
+    (28) expression -> expression MAS expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 28 (expression -> expression MAS expression .)
+    MAS             reduce using rule 28 (expression -> expression MAS expression .)
+    MENOS           reduce using rule 28 (expression -> expression MAS expression .)
+    MAYORQUE        reduce using rule 28 (expression -> expression MAS expression .)
+    MENORQUE        reduce using rule 28 (expression -> expression MAS expression .)
+    MAYOR_IGUAL     reduce using rule 28 (expression -> expression MAS expression .)
+    MENOR_IGUAL     reduce using rule 28 (expression -> expression MAS expression .)
+    EQUIVALE        reduce using rule 28 (expression -> expression MAS expression .)
+    DIFIERE         reduce using rule 28 (expression -> expression MAS expression .)
+    O               reduce using rule 28 (expression -> expression MAS expression .)
+    Y               reduce using rule 28 (expression -> expression MAS expression .)
+    PUNTO           reduce using rule 28 (expression -> expression MAS expression .)
+    PARDE           reduce using rule 28 (expression -> expression MAS expression .)
+    COMA            reduce using rule 28 (expression -> expression MAS expression .)
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+
+  ! POR             [ reduce using rule 28 (expression -> expression MAS expression .) ]
+  ! ENTRE           [ reduce using rule 28 (expression -> expression MAS expression .) ]
+  ! MAS             [ shift and go to state 53 ]
+  ! MENOS           [ shift and go to state 54 ]
+  ! MAYORQUE        [ shift and go to state 57 ]
+  ! MENORQUE        [ shift and go to state 58 ]
+  ! MAYOR_IGUAL     [ shift and go to state 59 ]
+  ! MENOR_IGUAL     [ shift and go to state 60 ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 80
+
+    (29) expression -> expression MENOS expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 29 (expression -> expression MENOS expression .)
+    MAS             reduce using rule 29 (expression -> expression MENOS expression .)
+    MENOS           reduce using rule 29 (expression -> expression MENOS expression .)
+    MAYORQUE        reduce using rule 29 (expression -> expression MENOS expression .)
+    MENORQUE        reduce using rule 29 (expression -> expression MENOS expression .)
+    MAYOR_IGUAL     reduce using rule 29 (expression -> expression MENOS expression .)
+    MENOR_IGUAL     reduce using rule 29 (expression -> expression MENOS expression .)
+    EQUIVALE        reduce using rule 29 (expression -> expression MENOS expression .)
+    DIFIERE         reduce using rule 29 (expression -> expression MENOS expression .)
+    O               reduce using rule 29 (expression -> expression MENOS expression .)
+    Y               reduce using rule 29 (expression -> expression MENOS expression .)
+    PUNTO           reduce using rule 29 (expression -> expression MENOS expression .)
+    PARDE           reduce using rule 29 (expression -> expression MENOS expression .)
+    COMA            reduce using rule 29 (expression -> expression MENOS expression .)
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+
+  ! POR             [ reduce using rule 29 (expression -> expression MENOS expression .) ]
+  ! ENTRE           [ reduce using rule 29 (expression -> expression MENOS expression .) ]
+  ! MAS             [ shift and go to state 53 ]
+  ! MENOS           [ shift and go to state 54 ]
+  ! MAYORQUE        [ shift and go to state 57 ]
+  ! MENORQUE        [ shift and go to state 58 ]
+  ! MAYOR_IGUAL     [ shift and go to state 59 ]
+  ! MENOR_IGUAL     [ shift and go to state 60 ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 81
+
+    (30) expression -> expression POR expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 30 (expression -> expression POR expression .)
+    MAS             reduce using rule 30 (expression -> expression POR expression .)
+    MENOS           reduce using rule 30 (expression -> expression POR expression .)
+    POR             reduce using rule 30 (expression -> expression POR expression .)
+    ENTRE           reduce using rule 30 (expression -> expression POR expression .)
+    MAYORQUE        reduce using rule 30 (expression -> expression POR expression .)
+    MENORQUE        reduce using rule 30 (expression -> expression POR expression .)
+    MAYOR_IGUAL     reduce using rule 30 (expression -> expression POR expression .)
+    MENOR_IGUAL     reduce using rule 30 (expression -> expression POR expression .)
+    EQUIVALE        reduce using rule 30 (expression -> expression POR expression .)
+    DIFIERE         reduce using rule 30 (expression -> expression POR expression .)
+    O               reduce using rule 30 (expression -> expression POR expression .)
+    Y               reduce using rule 30 (expression -> expression POR expression .)
+    PUNTO           reduce using rule 30 (expression -> expression POR expression .)
+    PARDE           reduce using rule 30 (expression -> expression POR expression .)
+    COMA            reduce using rule 30 (expression -> expression POR expression .)
+
+  ! MAS             [ shift and go to state 53 ]
+  ! MENOS           [ shift and go to state 54 ]
+  ! POR             [ shift and go to state 55 ]
+  ! ENTRE           [ shift and go to state 56 ]
+  ! MAYORQUE        [ shift and go to state 57 ]
+  ! MENORQUE        [ shift and go to state 58 ]
+  ! MAYOR_IGUAL     [ shift and go to state 59 ]
+  ! MENOR_IGUAL     [ shift and go to state 60 ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 82
+
+    (31) expression -> expression ENTRE expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 31 (expression -> expression ENTRE expression .)
+    MAS             reduce using rule 31 (expression -> expression ENTRE expression .)
+    MENOS           reduce using rule 31 (expression -> expression ENTRE expression .)
+    POR             reduce using rule 31 (expression -> expression ENTRE expression .)
+    ENTRE           reduce using rule 31 (expression -> expression ENTRE expression .)
+    MAYORQUE        reduce using rule 31 (expression -> expression ENTRE expression .)
+    MENORQUE        reduce using rule 31 (expression -> expression ENTRE expression .)
+    MAYOR_IGUAL     reduce using rule 31 (expression -> expression ENTRE expression .)
+    MENOR_IGUAL     reduce using rule 31 (expression -> expression ENTRE expression .)
+    EQUIVALE        reduce using rule 31 (expression -> expression ENTRE expression .)
+    DIFIERE         reduce using rule 31 (expression -> expression ENTRE expression .)
+    O               reduce using rule 31 (expression -> expression ENTRE expression .)
+    Y               reduce using rule 31 (expression -> expression ENTRE expression .)
+    PUNTO           reduce using rule 31 (expression -> expression ENTRE expression .)
+    PARDE           reduce using rule 31 (expression -> expression ENTRE expression .)
+    COMA            reduce using rule 31 (expression -> expression ENTRE expression .)
+
+  ! MAS             [ shift and go to state 53 ]
+  ! MENOS           [ shift and go to state 54 ]
+  ! POR             [ shift and go to state 55 ]
+  ! ENTRE           [ shift and go to state 56 ]
+  ! MAYORQUE        [ shift and go to state 57 ]
+  ! MENORQUE        [ shift and go to state 58 ]
+  ! MAYOR_IGUAL     [ shift and go to state 59 ]
+  ! MENOR_IGUAL     [ shift and go to state 60 ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 83
+
+    (32) expression -> expression MAYORQUE expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    MAYORQUE        reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    MENORQUE        reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    MAYOR_IGUAL     reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    MENOR_IGUAL     reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    EQUIVALE        reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    DIFIERE         reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    O               reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    Y               reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    PUNTO           reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    PARDE           reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    COMA            reduce using rule 32 (expression -> expression MAYORQUE expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+
+  ! MAS             [ reduce using rule 32 (expression -> expression MAYORQUE expression .) ]
+  ! MENOS           [ reduce using rule 32 (expression -> expression MAYORQUE expression .) ]
+  ! POR             [ reduce using rule 32 (expression -> expression MAYORQUE expression .) ]
+  ! ENTRE           [ reduce using rule 32 (expression -> expression MAYORQUE expression .) ]
+  ! MAYORQUE        [ shift and go to state 57 ]
+  ! MENORQUE        [ shift and go to state 58 ]
+  ! MAYOR_IGUAL     [ shift and go to state 59 ]
+  ! MENOR_IGUAL     [ shift and go to state 60 ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 84
+
+    (33) expression -> expression MENORQUE expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 33 (expression -> expression MENORQUE expression .)
+    MAYORQUE        reduce using rule 33 (expression -> expression MENORQUE expression .)
+    MENORQUE        reduce using rule 33 (expression -> expression MENORQUE expression .)
+    MAYOR_IGUAL     reduce using rule 33 (expression -> expression MENORQUE expression .)
+    MENOR_IGUAL     reduce using rule 33 (expression -> expression MENORQUE expression .)
+    EQUIVALE        reduce using rule 33 (expression -> expression MENORQUE expression .)
+    DIFIERE         reduce using rule 33 (expression -> expression MENORQUE expression .)
+    O               reduce using rule 33 (expression -> expression MENORQUE expression .)
+    Y               reduce using rule 33 (expression -> expression MENORQUE expression .)
+    PUNTO           reduce using rule 33 (expression -> expression MENORQUE expression .)
+    PARDE           reduce using rule 33 (expression -> expression MENORQUE expression .)
+    COMA            reduce using rule 33 (expression -> expression MENORQUE expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+
+  ! MAS             [ reduce using rule 33 (expression -> expression MENORQUE expression .) ]
+  ! MENOS           [ reduce using rule 33 (expression -> expression MENORQUE expression .) ]
+  ! POR             [ reduce using rule 33 (expression -> expression MENORQUE expression .) ]
+  ! ENTRE           [ reduce using rule 33 (expression -> expression MENORQUE expression .) ]
+  ! MAYORQUE        [ shift and go to state 57 ]
+  ! MENORQUE        [ shift and go to state 58 ]
+  ! MAYOR_IGUAL     [ shift and go to state 59 ]
+  ! MENOR_IGUAL     [ shift and go to state 60 ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 85
+
+    (34) expression -> expression MAYOR_IGUAL expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    MAYORQUE        reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    MENORQUE        reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    MAYOR_IGUAL     reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    MENOR_IGUAL     reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    EQUIVALE        reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    DIFIERE         reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    O               reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    Y               reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    PUNTO           reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    PARDE           reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    COMA            reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+
+  ! MAS             [ reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .) ]
+  ! MENOS           [ reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .) ]
+  ! POR             [ reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .) ]
+  ! ENTRE           [ reduce using rule 34 (expression -> expression MAYOR_IGUAL expression .) ]
+  ! MAYORQUE        [ shift and go to state 57 ]
+  ! MENORQUE        [ shift and go to state 58 ]
+  ! MAYOR_IGUAL     [ shift and go to state 59 ]
+  ! MENOR_IGUAL     [ shift and go to state 60 ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 86
+
+    (35) expression -> expression MENOR_IGUAL expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    MAYORQUE        reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    MENORQUE        reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    MAYOR_IGUAL     reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    MENOR_IGUAL     reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    EQUIVALE        reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    DIFIERE         reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    O               reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    Y               reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    PUNTO           reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    PARDE           reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    COMA            reduce using rule 35 (expression -> expression MENOR_IGUAL expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+
+  ! MAS             [ reduce using rule 35 (expression -> expression MENOR_IGUAL expression .) ]
+  ! MENOS           [ reduce using rule 35 (expression -> expression MENOR_IGUAL expression .) ]
+  ! POR             [ reduce using rule 35 (expression -> expression MENOR_IGUAL expression .) ]
+  ! ENTRE           [ reduce using rule 35 (expression -> expression MENOR_IGUAL expression .) ]
+  ! MAYORQUE        [ shift and go to state 57 ]
+  ! MENORQUE        [ shift and go to state 58 ]
+  ! MAYOR_IGUAL     [ shift and go to state 59 ]
+  ! MENOR_IGUAL     [ shift and go to state 60 ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 87
+
+    (36) expression -> expression EQUIVALE expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 36 (expression -> expression EQUIVALE expression .)
+    EQUIVALE        reduce using rule 36 (expression -> expression EQUIVALE expression .)
+    DIFIERE         reduce using rule 36 (expression -> expression EQUIVALE expression .)
+    O               reduce using rule 36 (expression -> expression EQUIVALE expression .)
+    Y               reduce using rule 36 (expression -> expression EQUIVALE expression .)
+    PUNTO           reduce using rule 36 (expression -> expression EQUIVALE expression .)
+    PARDE           reduce using rule 36 (expression -> expression EQUIVALE expression .)
+    COMA            reduce using rule 36 (expression -> expression EQUIVALE expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+
+  ! MAS             [ reduce using rule 36 (expression -> expression EQUIVALE expression .) ]
+  ! MENOS           [ reduce using rule 36 (expression -> expression EQUIVALE expression .) ]
+  ! POR             [ reduce using rule 36 (expression -> expression EQUIVALE expression .) ]
+  ! ENTRE           [ reduce using rule 36 (expression -> expression EQUIVALE expression .) ]
+  ! MAYORQUE        [ reduce using rule 36 (expression -> expression EQUIVALE expression .) ]
+  ! MENORQUE        [ reduce using rule 36 (expression -> expression EQUIVALE expression .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 36 (expression -> expression EQUIVALE expression .) ]
+  ! MENOR_IGUAL     [ reduce using rule 36 (expression -> expression EQUIVALE expression .) ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 88
+
+    (37) expression -> expression DIFIERE expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 37 (expression -> expression DIFIERE expression .)
+    EQUIVALE        reduce using rule 37 (expression -> expression DIFIERE expression .)
+    DIFIERE         reduce using rule 37 (expression -> expression DIFIERE expression .)
+    O               reduce using rule 37 (expression -> expression DIFIERE expression .)
+    Y               reduce using rule 37 (expression -> expression DIFIERE expression .)
+    PUNTO           reduce using rule 37 (expression -> expression DIFIERE expression .)
+    PARDE           reduce using rule 37 (expression -> expression DIFIERE expression .)
+    COMA            reduce using rule 37 (expression -> expression DIFIERE expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+
+  ! MAS             [ reduce using rule 37 (expression -> expression DIFIERE expression .) ]
+  ! MENOS           [ reduce using rule 37 (expression -> expression DIFIERE expression .) ]
+  ! POR             [ reduce using rule 37 (expression -> expression DIFIERE expression .) ]
+  ! ENTRE           [ reduce using rule 37 (expression -> expression DIFIERE expression .) ]
+  ! MAYORQUE        [ reduce using rule 37 (expression -> expression DIFIERE expression .) ]
+  ! MENORQUE        [ reduce using rule 37 (expression -> expression DIFIERE expression .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 37 (expression -> expression DIFIERE expression .) ]
+  ! MENOR_IGUAL     [ reduce using rule 37 (expression -> expression DIFIERE expression .) ]
+  ! EQUIVALE        [ shift and go to state 61 ]
+  ! DIFIERE         [ shift and go to state 62 ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 89
+
+    (38) expression -> expression O expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 38 (expression -> expression O expression .)
+    O               reduce using rule 38 (expression -> expression O expression .)
+    PUNTO           reduce using rule 38 (expression -> expression O expression .)
+    PARDE           reduce using rule 38 (expression -> expression O expression .)
+    COMA            reduce using rule 38 (expression -> expression O expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+    EQUIVALE        shift and go to state 61
+    DIFIERE         shift and go to state 62
+    Y               shift and go to state 64
+
+  ! MAS             [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! MENOS           [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! POR             [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! ENTRE           [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! MAYORQUE        [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! MENORQUE        [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! MENOR_IGUAL     [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! EQUIVALE        [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! DIFIERE         [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! Y               [ reduce using rule 38 (expression -> expression O expression .) ]
+  ! O               [ shift and go to state 63 ]
+
+
+state 90
+
+    (39) expression -> expression Y expression .
+    (28) expression -> expression . MAS expression
+    (29) expression -> expression . MENOS expression
+    (30) expression -> expression . POR expression
+    (31) expression -> expression . ENTRE expression
+    (32) expression -> expression . MAYORQUE expression
+    (33) expression -> expression . MENORQUE expression
+    (34) expression -> expression . MAYOR_IGUAL expression
+    (35) expression -> expression . MENOR_IGUAL expression
+    (36) expression -> expression . EQUIVALE expression
+    (37) expression -> expression . DIFIERE expression
+    (38) expression -> expression . O expression
+    (39) expression -> expression . Y expression
+
+    ENTONCES        reduce using rule 39 (expression -> expression Y expression .)
+    O               reduce using rule 39 (expression -> expression Y expression .)
+    Y               reduce using rule 39 (expression -> expression Y expression .)
+    PUNTO           reduce using rule 39 (expression -> expression Y expression .)
+    PARDE           reduce using rule 39 (expression -> expression Y expression .)
+    COMA            reduce using rule 39 (expression -> expression Y expression .)
+    MAS             shift and go to state 53
+    MENOS           shift and go to state 54
+    POR             shift and go to state 55
+    ENTRE           shift and go to state 56
+    MAYORQUE        shift and go to state 57
+    MENORQUE        shift and go to state 58
+    MAYOR_IGUAL     shift and go to state 59
+    MENOR_IGUAL     shift and go to state 60
+    EQUIVALE        shift and go to state 61
+    DIFIERE         shift and go to state 62
+
+  ! MAS             [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! MENOS           [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! POR             [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! ENTRE           [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! MAYORQUE        [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! MENORQUE        [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! MAYOR_IGUAL     [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! MENOR_IGUAL     [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! EQUIVALE        [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! DIFIERE         [ reduce using rule 39 (expression -> expression Y expression .) ]
+  ! O               [ shift and go to state 63 ]
+  ! Y               [ shift and go to state 64 ]
+
+
+state 91
+
+    (40) expression -> PARIZ expression PARDE .
+
+    ENTONCES        reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    MAS             reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    MENOS           reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    POR             reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    ENTRE           reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    MAYORQUE        reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    MENORQUE        reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    MAYOR_IGUAL     reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    MENOR_IGUAL     reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    EQUIVALE        reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    DIFIERE         reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    O               reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    Y               reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    PUNTO           reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    PARDE           reduce using rule 40 (expression -> PARIZ expression PARDE .)
+    COMA            reduce using rule 40 (expression -> PARIZ expression PARDE .)
+
+
+state 92
+
+    (48) special_expression -> special_expression special_expression . MAS
+    (49) special_expression -> special_expression special_expression . MENOS
+    (50) special_expression -> special_expression special_expression . POR
+    (51) special_expression -> special_expression special_expression . ENTRE
+    (52) special_expression -> special_expression special_expression . MAYORQUE
+    (53) special_expression -> special_expression special_expression . MENORQUE
+    (54) special_expression -> special_expression special_expression . MAYOR_IGUAL
+    (55) special_expression -> special_expression special_expression . MENOR_IGUAL
+    (56) special_expression -> special_expression special_expression . EQUIVALE
+    (57) special_expression -> special_expression special_expression . DIFIERE
+    (58) special_expression -> special_expression special_expression . O
+    (59) special_expression -> special_expression special_expression . Y
+    (48) special_expression -> special_expression . special_expression MAS
+    (49) special_expression -> special_expression . special_expression MENOS
+    (50) special_expression -> special_expression . special_expression POR
+    (51) special_expression -> special_expression . special_expression ENTRE
+    (52) special_expression -> special_expression . special_expression MAYORQUE
+    (53) special_expression -> special_expression . special_expression MENORQUE
+    (54) special_expression -> special_expression . special_expression MAYOR_IGUAL
+    (55) special_expression -> special_expression . special_expression MENOR_IGUAL
+    (56) special_expression -> special_expression . special_expression EQUIVALE
+    (57) special_expression -> special_expression . special_expression DIFIERE
+    (58) special_expression -> special_expression . special_expression O
+    (59) special_expression -> special_expression . special_expression Y
+    (48) special_expression -> . special_expression special_expression MAS
+    (49) special_expression -> . special_expression special_expression MENOS
+    (50) special_expression -> . special_expression special_expression POR
+    (51) special_expression -> . special_expression special_expression ENTRE
+    (52) special_expression -> . special_expression special_expression MAYORQUE
+    (53) special_expression -> . special_expression special_expression MENORQUE
+    (54) special_expression -> . special_expression special_expression MAYOR_IGUAL
+    (55) special_expression -> . special_expression special_expression MENOR_IGUAL
+    (56) special_expression -> . special_expression special_expression EQUIVALE
+    (57) special_expression -> . special_expression special_expression DIFIERE
+    (58) special_expression -> . special_expression special_expression O
+    (59) special_expression -> . special_expression special_expression Y
+    (60) special_expression -> . NO special_expression
+    (61) special_expression -> . IDENTIF
+    (62) special_expression -> . NUMERO
+    (63) special_expression -> . boolean_value
+    (64) special_expression -> . MENOS special_expression
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    MAS             shift and go to state 100
+    MENOS           shift and go to state 101
+    POR             shift and go to state 102
+    ENTRE           shift and go to state 103
+    MAYORQUE        shift and go to state 104
+    MENORQUE        shift and go to state 105
+    MAYOR_IGUAL     shift and go to state 106
+    MENOR_IGUAL     shift and go to state 107
+    EQUIVALE        shift and go to state 108
+    DIFIERE         shift and go to state 109
+    O               shift and go to state 110
+    Y               shift and go to state 111
+    NO              shift and go to state 69
+    IDENTIF         shift and go to state 70
+    NUMERO          shift and go to state 71
+    CIERTO          shift and go to state 39
+    FALSO           shift and go to state 40
+
+    special_expression             shift and go to state 92
+    boolean_value                  shift and go to state 72
+
+state 93
+
+    (42) expression -> ABRE_RPN special_expression CIERRA_RPN .
+
+    ENTONCES        reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    MAS             reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    MENOS           reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    POR             reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    ENTRE           reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    MAYORQUE        reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    MENORQUE        reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    MAYOR_IGUAL     reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    MENOR_IGUAL     reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    EQUIVALE        reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    DIFIERE         reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    O               reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    Y               reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    PUNTO           reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    PARDE           reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    COMA            reduce using rule 42 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+
+
+state 94
+
+    (64) special_expression -> MENOS special_expression .
+    (48) special_expression -> special_expression . special_expression MAS
+    (49) special_expression -> special_expression . special_expression MENOS
+    (50) special_expression -> special_expression . special_expression POR
+    (51) special_expression -> special_expression . special_expression ENTRE
+    (52) special_expression -> special_expression . special_expression MAYORQUE
+    (53) special_expression -> special_expression . special_expression MENORQUE
+    (54) special_expression -> special_expression . special_expression MAYOR_IGUAL
+    (55) special_expression -> special_expression . special_expression MENOR_IGUAL
+    (56) special_expression -> special_expression . special_expression EQUIVALE
+    (57) special_expression -> special_expression . special_expression DIFIERE
+    (58) special_expression -> special_expression . special_expression O
+    (59) special_expression -> special_expression . special_expression Y
+    (48) special_expression -> . special_expression special_expression MAS
+    (49) special_expression -> . special_expression special_expression MENOS
+    (50) special_expression -> . special_expression special_expression POR
+    (51) special_expression -> . special_expression special_expression ENTRE
+    (52) special_expression -> . special_expression special_expression MAYORQUE
+    (53) special_expression -> . special_expression special_expression MENORQUE
+    (54) special_expression -> . special_expression special_expression MAYOR_IGUAL
+    (55) special_expression -> . special_expression special_expression MENOR_IGUAL
+    (56) special_expression -> . special_expression special_expression EQUIVALE
+    (57) special_expression -> . special_expression special_expression DIFIERE
+    (58) special_expression -> . special_expression special_expression O
+    (59) special_expression -> . special_expression special_expression Y
+    (60) special_expression -> . NO special_expression
+    (61) special_expression -> . IDENTIF
+    (62) special_expression -> . NUMERO
+    (63) special_expression -> . boolean_value
+    (64) special_expression -> . MENOS special_expression
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    CIERRA_RPN      reduce using rule 64 (special_expression -> MENOS special_expression .)
+    NO              reduce using rule 64 (special_expression -> MENOS special_expression .)
+    IDENTIF         reduce using rule 64 (special_expression -> MENOS special_expression .)
+    NUMERO          reduce using rule 64 (special_expression -> MENOS special_expression .)
+    MENOS           reduce using rule 64 (special_expression -> MENOS special_expression .)
+    CIERTO          reduce using rule 64 (special_expression -> MENOS special_expression .)
+    FALSO           reduce using rule 64 (special_expression -> MENOS special_expression .)
+    MAS             reduce using rule 64 (special_expression -> MENOS special_expression .)
+    POR             reduce using rule 64 (special_expression -> MENOS special_expression .)
+    ENTRE           reduce using rule 64 (special_expression -> MENOS special_expression .)
+    MAYORQUE        reduce using rule 64 (special_expression -> MENOS special_expression .)
+    MENORQUE        reduce using rule 64 (special_expression -> MENOS special_expression .)
+    MAYOR_IGUAL     reduce using rule 64 (special_expression -> MENOS special_expression .)
+    MENOR_IGUAL     reduce using rule 64 (special_expression -> MENOS special_expression .)
+    EQUIVALE        reduce using rule 64 (special_expression -> MENOS special_expression .)
+    DIFIERE         reduce using rule 64 (special_expression -> MENOS special_expression .)
+    O               reduce using rule 64 (special_expression -> MENOS special_expression .)
+    Y               reduce using rule 64 (special_expression -> MENOS special_expression .)
+
+  ! NO              [ shift and go to state 69 ]
+  ! IDENTIF         [ shift and go to state 70 ]
+  ! NUMERO          [ shift and go to state 71 ]
+  ! MENOS           [ shift and go to state 68 ]
+  ! CIERTO          [ shift and go to state 39 ]
+  ! FALSO           [ shift and go to state 40 ]
+
+    special_expression             shift and go to state 92
+    boolean_value                  shift and go to state 72
+
+state 95
+
+    (60) special_expression -> NO special_expression .
+    (48) special_expression -> special_expression . special_expression MAS
+    (49) special_expression -> special_expression . special_expression MENOS
+    (50) special_expression -> special_expression . special_expression POR
+    (51) special_expression -> special_expression . special_expression ENTRE
+    (52) special_expression -> special_expression . special_expression MAYORQUE
+    (53) special_expression -> special_expression . special_expression MENORQUE
+    (54) special_expression -> special_expression . special_expression MAYOR_IGUAL
+    (55) special_expression -> special_expression . special_expression MENOR_IGUAL
+    (56) special_expression -> special_expression . special_expression EQUIVALE
+    (57) special_expression -> special_expression . special_expression DIFIERE
+    (58) special_expression -> special_expression . special_expression O
+    (59) special_expression -> special_expression . special_expression Y
+    (48) special_expression -> . special_expression special_expression MAS
+    (49) special_expression -> . special_expression special_expression MENOS
+    (50) special_expression -> . special_expression special_expression POR
+    (51) special_expression -> . special_expression special_expression ENTRE
+    (52) special_expression -> . special_expression special_expression MAYORQUE
+    (53) special_expression -> . special_expression special_expression MENORQUE
+    (54) special_expression -> . special_expression special_expression MAYOR_IGUAL
+    (55) special_expression -> . special_expression special_expression MENOR_IGUAL
+    (56) special_expression -> . special_expression special_expression EQUIVALE
+    (57) special_expression -> . special_expression special_expression DIFIERE
+    (58) special_expression -> . special_expression special_expression O
+    (59) special_expression -> . special_expression special_expression Y
+    (60) special_expression -> . NO special_expression
+    (61) special_expression -> . IDENTIF
+    (62) special_expression -> . NUMERO
+    (63) special_expression -> . boolean_value
+    (64) special_expression -> . MENOS special_expression
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    CIERRA_RPN      reduce using rule 60 (special_expression -> NO special_expression .)
+    IDENTIF         reduce using rule 60 (special_expression -> NO special_expression .)
+    NUMERO          reduce using rule 60 (special_expression -> NO special_expression .)
+    CIERTO          reduce using rule 60 (special_expression -> NO special_expression .)
+    FALSO           reduce using rule 60 (special_expression -> NO special_expression .)
+    MAS             reduce using rule 60 (special_expression -> NO special_expression .)
+    POR             reduce using rule 60 (special_expression -> NO special_expression .)
+    ENTRE           reduce using rule 60 (special_expression -> NO special_expression .)
+    MAYORQUE        reduce using rule 60 (special_expression -> NO special_expression .)
+    MENORQUE        reduce using rule 60 (special_expression -> NO special_expression .)
+    MAYOR_IGUAL     reduce using rule 60 (special_expression -> NO special_expression .)
+    MENOR_IGUAL     reduce using rule 60 (special_expression -> NO special_expression .)
+    EQUIVALE        reduce using rule 60 (special_expression -> NO special_expression .)
+    DIFIERE         reduce using rule 60 (special_expression -> NO special_expression .)
+    O               reduce using rule 60 (special_expression -> NO special_expression .)
+    Y               reduce using rule 60 (special_expression -> NO special_expression .)
+    NO              shift and go to state 69
+    MENOS           shift and go to state 68
+
+  ! NO              [ reduce using rule 60 (special_expression -> NO special_expression .) ]
+  ! MENOS           [ reduce using rule 60 (special_expression -> NO special_expression .) ]
+  ! IDENTIF         [ shift and go to state 70 ]
+  ! NUMERO          [ shift and go to state 71 ]
+  ! CIERTO          [ shift and go to state 39 ]
+  ! FALSO           [ shift and go to state 40 ]
+
+    special_expression             shift and go to state 92
+    boolean_value                  shift and go to state 72
+
+state 96
+
+    (15) while_statement -> MIENTRAS expression ENTONCES list_sentences . LISTO
+    (3) list_sentences -> list_sentences . sentence
+    (5) sentence -> . datatype list_id PUNTO
+    (6) sentence -> . control_statement
+    (7) sentence -> . assignment_statement PUNTO
+    (8) sentence -> . system_function_call_statement PUNTO
+    (24) datatype -> . ENTERO
+    (25) datatype -> . CADENA
+    (26) datatype -> . REAL
+    (27) datatype -> . BOOLEANO
+    (11) control_statement -> . if_statement
+    (12) control_statement -> . while_statement
+    (16) assignment_statement -> . IDENTIF IGUAL expression
+    (17) assignment_statement -> . IDENTIF IGUAL CADENA_VALOR
+    (18) system_function_call_statement -> . IMPRIMIR PARIZ list_arg PARDE
+    (19) system_function_call_statement -> . LEER PARIZ list_id PARDE
+    (13) if_statement -> . CUANDO expression ENTONCES list_sentences LISTO
+    (14) if_statement -> . CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+    (15) while_statement -> . MIENTRAS expression ENTONCES list_sentences LISTO
+
+    LISTO           shift and go to state 112
+    ENTERO          shift and go to state 11
+    CADENA          shift and go to state 12
+    REAL            shift and go to state 13
+    BOOLEANO        shift and go to state 14
+    IDENTIF         shift and go to state 17
+    IMPRIMIR        shift and go to state 18
+    LEER            shift and go to state 19
+    CUANDO          shift and go to state 20
+    MIENTRAS        shift and go to state 21
+
+    sentence                       shift and go to state 23
+    datatype                       shift and go to state 7
+    control_statement              shift and go to state 8
+    assignment_statement           shift and go to state 9
+    system_function_call_statement shift and go to state 10
+    if_statement                   shift and go to state 15
+    while_statement                shift and go to state 16
+
+state 97
+
+    (20) list_arg -> list_arg COMA arg .
+
+    PARDE           reduce using rule 20 (list_arg -> list_arg COMA arg .)
+    COMA            reduce using rule 20 (list_arg -> list_arg COMA arg .)
+
+
+state 98
+
+    (13) if_statement -> CUANDO expression ENTONCES list_sentences LISTO .
+
+    FIN             reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    ENTERO          reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    CADENA          reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    REAL            reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    BOOLEANO        reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    IDENTIF         reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    IMPRIMIR        reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    LEER            reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    CUANDO          reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    MIENTRAS        reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    LISTO           reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+    SINO            reduce using rule 13 (if_statement -> CUANDO expression ENTONCES list_sentences LISTO .)
+
+
+state 99
+
+    (14) if_statement -> CUANDO expression ENTONCES list_sentences SINO . list_sentences LISTO
+    (3) list_sentences -> . list_sentences sentence
+    (4) list_sentences -> . sentence
+    (5) sentence -> . datatype list_id PUNTO
+    (6) sentence -> . control_statement
+    (7) sentence -> . assignment_statement PUNTO
+    (8) sentence -> . system_function_call_statement PUNTO
+    (24) datatype -> . ENTERO
+    (25) datatype -> . CADENA
+    (26) datatype -> . REAL
+    (27) datatype -> . BOOLEANO
+    (11) control_statement -> . if_statement
+    (12) control_statement -> . while_statement
+    (16) assignment_statement -> . IDENTIF IGUAL expression
+    (17) assignment_statement -> . IDENTIF IGUAL CADENA_VALOR
+    (18) system_function_call_statement -> . IMPRIMIR PARIZ list_arg PARDE
+    (19) system_function_call_statement -> . LEER PARIZ list_id PARDE
+    (13) if_statement -> . CUANDO expression ENTONCES list_sentences LISTO
+    (14) if_statement -> . CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+    (15) while_statement -> . MIENTRAS expression ENTONCES list_sentences LISTO
+
+    ENTERO          shift and go to state 11
+    CADENA          shift and go to state 12
+    REAL            shift and go to state 13
+    BOOLEANO        shift and go to state 14
+    IDENTIF         shift and go to state 17
+    IMPRIMIR        shift and go to state 18
+    LEER            shift and go to state 19
+    CUANDO          shift and go to state 20
+    MIENTRAS        shift and go to state 21
+
+    list_sentences                 shift and go to state 113
+    sentence                       shift and go to state 6
+    datatype                       shift and go to state 7
+    control_statement              shift and go to state 8
+    assignment_statement           shift and go to state 9
+    system_function_call_statement shift and go to state 10
+    if_statement                   shift and go to state 15
+    while_statement                shift and go to state 16
+
+state 100
+
+    (48) special_expression -> special_expression special_expression MAS .
+
+    CIERRA_RPN      reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    NO              reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    IDENTIF         reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    NUMERO          reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    MENOS           reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    CIERTO          reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    FALSO           reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    MAS             reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    POR             reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    ENTRE           reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    MAYORQUE        reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    MENORQUE        reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    MAYOR_IGUAL     reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    MENOR_IGUAL     reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    EQUIVALE        reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    DIFIERE         reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    O               reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+    Y               reduce using rule 48 (special_expression -> special_expression special_expression MAS .)
+
+
+state 101
+
+    (49) special_expression -> special_expression special_expression MENOS .
+    (64) special_expression -> MENOS . special_expression
+    (48) special_expression -> . special_expression special_expression MAS
+    (49) special_expression -> . special_expression special_expression MENOS
+    (50) special_expression -> . special_expression special_expression POR
+    (51) special_expression -> . special_expression special_expression ENTRE
+    (52) special_expression -> . special_expression special_expression MAYORQUE
+    (53) special_expression -> . special_expression special_expression MENORQUE
+    (54) special_expression -> . special_expression special_expression MAYOR_IGUAL
+    (55) special_expression -> . special_expression special_expression MENOR_IGUAL
+    (56) special_expression -> . special_expression special_expression EQUIVALE
+    (57) special_expression -> . special_expression special_expression DIFIERE
+    (58) special_expression -> . special_expression special_expression O
+    (59) special_expression -> . special_expression special_expression Y
+    (60) special_expression -> . NO special_expression
+    (61) special_expression -> . IDENTIF
+    (62) special_expression -> . NUMERO
+    (63) special_expression -> . boolean_value
+    (64) special_expression -> . MENOS special_expression
+    (46) boolean_value -> . CIERTO
+    (47) boolean_value -> . FALSO
+
+    CIERRA_RPN      reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    NO              reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    IDENTIF         reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    NUMERO          reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    MENOS           reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    CIERTO          reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    FALSO           reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    MAS             reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    POR             reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    ENTRE           reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    MAYORQUE        reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    MENORQUE        reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    MAYOR_IGUAL     reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    MENOR_IGUAL     reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    EQUIVALE        reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    DIFIERE         reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    O               reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+    Y               reduce using rule 49 (special_expression -> special_expression special_expression MENOS .)
+
+  ! NO              [ shift and go to state 69 ]
+  ! IDENTIF         [ shift and go to state 70 ]
+  ! NUMERO          [ shift and go to state 71 ]
+  ! MENOS           [ shift and go to state 68 ]
+  ! CIERTO          [ shift and go to state 39 ]
+  ! FALSO           [ shift and go to state 40 ]
+
+    special_expression             shift and go to state 94
+    boolean_value                  shift and go to state 72
+
+state 102
+
+    (50) special_expression -> special_expression special_expression POR .
+
+    CIERRA_RPN      reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    NO              reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    IDENTIF         reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    NUMERO          reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    MENOS           reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    CIERTO          reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    FALSO           reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    MAS             reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    POR             reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    ENTRE           reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    MAYORQUE        reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    MENORQUE        reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    MAYOR_IGUAL     reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    MENOR_IGUAL     reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    EQUIVALE        reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    DIFIERE         reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    O               reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+    Y               reduce using rule 50 (special_expression -> special_expression special_expression POR .)
+
+
+state 103
+
+    (51) special_expression -> special_expression special_expression ENTRE .
+
+    CIERRA_RPN      reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    NO              reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    IDENTIF         reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    NUMERO          reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    MENOS           reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    CIERTO          reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    FALSO           reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    MAS             reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    POR             reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    ENTRE           reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    MAYORQUE        reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    MENORQUE        reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    MAYOR_IGUAL     reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    MENOR_IGUAL     reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    EQUIVALE        reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    DIFIERE         reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    O               reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+    Y               reduce using rule 51 (special_expression -> special_expression special_expression ENTRE .)
+
+
+state 104
+
+    (52) special_expression -> special_expression special_expression MAYORQUE .
+
+    CIERRA_RPN      reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    NO              reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    IDENTIF         reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    NUMERO          reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    MENOS           reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    CIERTO          reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    FALSO           reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    MAS             reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    POR             reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    ENTRE           reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    MAYORQUE        reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    MENORQUE        reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    MAYOR_IGUAL     reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    MENOR_IGUAL     reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    EQUIVALE        reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    DIFIERE         reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    O               reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+    Y               reduce using rule 52 (special_expression -> special_expression special_expression MAYORQUE .)
+
+
+state 105
+
+    (53) special_expression -> special_expression special_expression MENORQUE .
+
+    CIERRA_RPN      reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    NO              reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    IDENTIF         reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    NUMERO          reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    MENOS           reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    CIERTO          reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    FALSO           reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    MAS             reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    POR             reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    ENTRE           reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    MAYORQUE        reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    MENORQUE        reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    MAYOR_IGUAL     reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    MENOR_IGUAL     reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    EQUIVALE        reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    DIFIERE         reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    O               reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+    Y               reduce using rule 53 (special_expression -> special_expression special_expression MENORQUE .)
+
+
+state 106
+
+    (54) special_expression -> special_expression special_expression MAYOR_IGUAL .
+
+    CIERRA_RPN      reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    NO              reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    IDENTIF         reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    NUMERO          reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    MENOS           reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    CIERTO          reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    FALSO           reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    MAS             reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    POR             reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    ENTRE           reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    MAYORQUE        reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    MENORQUE        reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    MAYOR_IGUAL     reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    MENOR_IGUAL     reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    EQUIVALE        reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    DIFIERE         reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    O               reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+    Y               reduce using rule 54 (special_expression -> special_expression special_expression MAYOR_IGUAL .)
+
+
+state 107
+
+    (55) special_expression -> special_expression special_expression MENOR_IGUAL .
+
+    CIERRA_RPN      reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    NO              reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    IDENTIF         reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    NUMERO          reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    MENOS           reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    CIERTO          reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    FALSO           reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    MAS             reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    POR             reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    ENTRE           reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    MAYORQUE        reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    MENORQUE        reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    MAYOR_IGUAL     reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    MENOR_IGUAL     reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    EQUIVALE        reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    DIFIERE         reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    O               reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+    Y               reduce using rule 55 (special_expression -> special_expression special_expression MENOR_IGUAL .)
+
+
+state 108
+
+    (56) special_expression -> special_expression special_expression EQUIVALE .
+
+    CIERRA_RPN      reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    NO              reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    IDENTIF         reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    NUMERO          reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    MENOS           reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    CIERTO          reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    FALSO           reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    MAS             reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    POR             reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    ENTRE           reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    MAYORQUE        reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    MENORQUE        reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    MAYOR_IGUAL     reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    MENOR_IGUAL     reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    EQUIVALE        reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    DIFIERE         reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    O               reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+    Y               reduce using rule 56 (special_expression -> special_expression special_expression EQUIVALE .)
+
+
+state 109
+
+    (57) special_expression -> special_expression special_expression DIFIERE .
+
+    CIERRA_RPN      reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    NO              reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    IDENTIF         reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    NUMERO          reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    MENOS           reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    CIERTO          reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    FALSO           reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    MAS             reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    POR             reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    ENTRE           reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    MAYORQUE        reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    MENORQUE        reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    MAYOR_IGUAL     reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    MENOR_IGUAL     reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    EQUIVALE        reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    DIFIERE         reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    O               reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+    Y               reduce using rule 57 (special_expression -> special_expression special_expression DIFIERE .)
+
+
+state 110
+
+    (58) special_expression -> special_expression special_expression O .
+
+    CIERRA_RPN      reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    NO              reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    IDENTIF         reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    NUMERO          reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    MENOS           reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    CIERTO          reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    FALSO           reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    MAS             reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    POR             reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    ENTRE           reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    MAYORQUE        reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    MENORQUE        reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    MAYOR_IGUAL     reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    MENOR_IGUAL     reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    EQUIVALE        reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    DIFIERE         reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    O               reduce using rule 58 (special_expression -> special_expression special_expression O .)
+    Y               reduce using rule 58 (special_expression -> special_expression special_expression O .)
+
+
+state 111
+
+    (59) special_expression -> special_expression special_expression Y .
+
+    CIERRA_RPN      reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    NO              reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    IDENTIF         reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    NUMERO          reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    MENOS           reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    CIERTO          reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    FALSO           reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    MAS             reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    POR             reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    ENTRE           reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    MAYORQUE        reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    MENORQUE        reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    MAYOR_IGUAL     reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    MENOR_IGUAL     reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    EQUIVALE        reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    DIFIERE         reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    O               reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+    Y               reduce using rule 59 (special_expression -> special_expression special_expression Y .)
+
+
+state 112
+
+    (15) while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .
+
+    FIN             reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    ENTERO          reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    CADENA          reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    REAL            reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    BOOLEANO        reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    IDENTIF         reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    IMPRIMIR        reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    LEER            reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    CUANDO          reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    MIENTRAS        reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    LISTO           reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+    SINO            reduce using rule 15 (while_statement -> MIENTRAS expression ENTONCES list_sentences LISTO .)
+
+
+state 113
+
+    (14) if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences . LISTO
+    (3) list_sentences -> list_sentences . sentence
+    (5) sentence -> . datatype list_id PUNTO
+    (6) sentence -> . control_statement
+    (7) sentence -> . assignment_statement PUNTO
+    (8) sentence -> . system_function_call_statement PUNTO
+    (24) datatype -> . ENTERO
+    (25) datatype -> . CADENA
+    (26) datatype -> . REAL
+    (27) datatype -> . BOOLEANO
+    (11) control_statement -> . if_statement
+    (12) control_statement -> . while_statement
+    (16) assignment_statement -> . IDENTIF IGUAL expression
+    (17) assignment_statement -> . IDENTIF IGUAL CADENA_VALOR
+    (18) system_function_call_statement -> . IMPRIMIR PARIZ list_arg PARDE
+    (19) system_function_call_statement -> . LEER PARIZ list_id PARDE
+    (13) if_statement -> . CUANDO expression ENTONCES list_sentences LISTO
+    (14) if_statement -> . CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO
+    (15) while_statement -> . MIENTRAS expression ENTONCES list_sentences LISTO
+
+    LISTO           shift and go to state 114
+    ENTERO          shift and go to state 11
+    CADENA          shift and go to state 12
+    REAL            shift and go to state 13
+    BOOLEANO        shift and go to state 14
+    IDENTIF         shift and go to state 17
+    IMPRIMIR        shift and go to state 18
+    LEER            shift and go to state 19
+    CUANDO          shift and go to state 20
+    MIENTRAS        shift and go to state 21
+
+    sentence                       shift and go to state 23
+    datatype                       shift and go to state 7
+    control_statement              shift and go to state 8
+    assignment_statement           shift and go to state 9
+    system_function_call_statement shift and go to state 10
+    if_statement                   shift and go to state 15
+    while_statement                shift and go to state 16
+
+state 114
+
+    (14) if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .
+
+    FIN             reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    ENTERO          reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    CADENA          reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    REAL            reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    BOOLEANO        reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    IDENTIF         reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    IMPRIMIR        reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    LEER            reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    CUANDO          reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    MIENTRAS        reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    LISTO           reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+    SINO            reduce using rule 14 (if_statement -> CUANDO expression ENTONCES list_sentences SINO list_sentences LISTO .)
+

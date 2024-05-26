@@ -1,0 +1,22 @@
+INICIO.
+entero num1, num2, num3, num4.
+cadena x, y, z.
+real t20, t30.
+Imprimir("lea dos enteros").
+Leer (num1, num2, num3).
+cuando x || !Falso entonces
+    x = 1.
+    cuando y != 2 entonces
+        y = [x y +] + x.
+    sino
+        y = a.
+    listo
+
+    mientras x <= 3 entonces
+        ab = (ab == a) < 3.
+    listo
+listo
+t30 = 50.87.
+t20 = (x + num4) * y - [abc cd +].
+Imprimir("SUMA= ", t20*20).
+FIN.
