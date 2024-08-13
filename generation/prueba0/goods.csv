@@ -1,0 +1,6 @@
+sentence,label
+( [ variable variable variable - + ] + number / number - number ),good
+variable - variable * variable + variable / variable + [ variable ] * number + variable,good
+variable,good
+( [ number variable variable variable - / + variable variable number variable * * - number - variable * + variable / ] ),good
+number,good

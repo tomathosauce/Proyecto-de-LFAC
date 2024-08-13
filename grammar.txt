@@ -1,0 +1,37 @@
+expression
+expression -> expression MAS expression 
+expression -> expression MENOS expression 
+expression -> expression POR expression 
+expression -> expression ENTRE expression 
+expression -> expression MAYORQUE expression 
+expression -> expression MENORQUE expression 
+expression -> expression MAYOR_IGUAL expression 
+expression -> expression MENOR_IGUAL expression 
+expression -> expression EQUIVALE expression 
+expression -> expression DIFIERE expression 
+expression -> expression O expression 
+expression -> expression Y expression 
+expression -> PARIZ expression PARDE 
+expression -> NO expression 
+expression -> ABRE_RPN special_expression CIERRA_RPN 
+expression -> IDENTIF 
+expression -> NUMERO 
+expression -> boolean_value
+boolean_value -> CIERTO 
+boolean_value -> FALSO
+special_expression -> special_expression special_expression MAS 
+special_expression -> special_expression special_expression MENOS 
+special_expression -> special_expression special_expression POR 
+special_expression -> special_expression special_expression ENTRE 
+special_expression -> special_expression special_expression MAYORQUE 
+special_expression -> special_expression special_expression MENORQUE 
+special_expression -> special_expression special_expression MAYOR_IGUAL 
+special_expression -> special_expression special_expression MENOR_IGUAL 
+special_expression -> special_expression special_expression EQUIVALE 
+special_expression -> special_expression special_expression DIFIERE 
+special_expression -> special_expression special_expression O 
+special_expression -> special_expression special_expression Y 
+special_expression -> NO special_expression 
+special_expression -> IDENTIF 
+special_expression -> NUMERO 
+special_expression -> boolean_value

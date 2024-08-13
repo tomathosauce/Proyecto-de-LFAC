@@ -3,3 +3,6 @@ local
 __pycache__
 build
 dist
+nomi_model*.zip
+nomi_model/
+classify-clickbait/
