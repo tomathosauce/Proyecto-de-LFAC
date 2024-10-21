@@ -219,7 +219,7 @@ def p_special_expression(p):
                             | boolean_value"""
     if len(p) == 4:
         p[0] = ('binary_expression', p[3], p[1], p[2])
-    elif p[1] == 'NO':
+    elif p[1] == '!':
         p[0] = ('negated', p[2])
     else:
         p[0] = p[1]

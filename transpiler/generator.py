@@ -1,6 +1,29 @@
+ops = ['+', '-']
+
 
 def indentation(level):
     return '    ' * level
+
+
+def add_context_to_exp(ast: tuple):
+    l = ['binary_expression']
+
+    if ast[0] == 'binary_expression':
+        sym = ast[1]
+        l.append(sym)
+        if sym == '*':
+            if type(ast[2]) == tuple:
+                l.append(list(ast[2]) + [sym])
+            else:
+                l.append(ast[2])
+
+            if type(ast[3]) == tuple:
+                l.append(list(ast[3]) + [sym])
+            else:
+                l.append(ast[3])
+
+            return tuple(l)
+    return ast
 
 
 def translate_ast_to_python(ast, level=0):
@@ -13,34 +36,29 @@ def translate_ast_to_python(ast, level=0):
     elif ast[0] == 'read':
         return f'\n{indentation(level)}'+f'\n{indentation(level)}'.join([f'{x} = input()' for x in ast[1]])
     elif ast[0] == 'assign':
-        print(ast)
         return "\n" + indentation(level) + f'{translate_ast_to_python(ast[1])} = {translate_ast_to_python(ast[2])}'
     elif ast[0] == 'binary_expression':
-        exp1 = translate_ast_to_python(ast[2])
-        exp2 = translate_ast_to_python(ast[3])
-        sym = ast[1]
+        if ast[1] == '*':
+            ast_context = add_context_to_exp(ast)
+        else:
+            ast_context = ast
+
+        exp1 = translate_ast_to_python(ast_context[2])
+        exp2 = translate_ast_to_python(ast_context[3])
+        sym = ast_context[1]
 
         if sym == '||':
             sym = 'or'
         if sym == '&&':
             sym = 'and'
 
-        # if sym == '*':
-        #     ops = ['+', '-']
-        #     if type(exp1) == tuple and exp1[1] in ops:
-        #         exp1 = f'({exp1})'
-        #     if type(exp2) == tuple and exp2[1] in ops:
-        #         exp2 = f'({exp2})'
-
-        exp = f'{exp1} {sym} {exp2}'
-
-        # print('AST: ', ast)
-        # print("result: ", exp)
+        if sym in ops and len(ast_context) == 5 and ast_context[4] == '*':
+            exp = f'({exp1} {sym} {exp2})'
+        else:
+            exp = f'{exp1} {sym} {exp2}'
 
         return exp
     elif ast[0] == 'if':
-        print('if')
-        print(ast[2])
         return "\n" + indentation(level) + 'if ' + translate_ast_to_python(ast[1]) + ':' \
                + ''.join([translate_ast_to_python(x, level + 1)
                          for x in ast[2]])

@@ -10,7 +10,7 @@ def main():
         else:
             y = a
         while x <= 3:
-            ab = ab == a < 3
+            ab = ab and a < 3
     t30 = 50.87
     t20 = (x + num4) * y - abc + cd
     print("SUMA= ", t20 * 20)
