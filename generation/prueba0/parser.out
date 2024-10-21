@@ -1,0 +1,519 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BOOLEANO
+    CADENA
+    CADENA_VALOR
+    CIERTO
+    COMA
+    CUANDO
+    DIFIERE
+    ENTERO
+    ENTONCES
+    EQUIVALE
+    FALSO
+    FIN
+    IDENTIF
+    IDENTIF_ILEGAL
+    IGUAL
+    IMPRIMIR
+    INICIO
+    LEER
+    LISTO
+    MAYORQUE
+    MAYOR_IGUAL
+    MENORQUE
+    MENOR_IGUAL
+    MIENTRAS
+    NO
+    NUMERO
+    O
+    PUNTO
+    REAL
+    SINO
+    Y
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression MAS expression
+Rule 2     expression -> expression MENOS expression
+Rule 3     expression -> expression POR expression
+Rule 4     expression -> expression ENTRE expression
+Rule 5     expression -> PARIZ expression PARDE
+Rule 6     expression -> ABRE_RPN special_expression CIERRA_RPN
+Rule 7     expression -> variable
+Rule 8     expression -> number
+Rule 9     special_expression -> special_expression special_expression MAS
+Rule 10    special_expression -> special_expression special_expression MENOS
+Rule 11    special_expression -> special_expression special_expression POR
+Rule 12    special_expression -> special_expression special_expression ENTRE
+Rule 13    special_expression -> variable
+Rule 14    special_expression -> number
+
+Terminals, with rules where they appear
+
+ABRE_RPN             : 6
+BOOLEANO             : 
+CADENA               : 
+CADENA_VALOR         : 
+CIERRA_RPN           : 6
+CIERTO               : 
+COMA                 : 
+CUANDO               : 
+DIFIERE              : 
+ENTERO               : 
+ENTONCES             : 
+ENTRE                : 4 12
+EQUIVALE             : 
+FALSO                : 
+FIN                  : 
+IDENTIF              : 
+IDENTIF_ILEGAL       : 
+IGUAL                : 
+IMPRIMIR             : 
+INICIO               : 
+LEER                 : 
+LISTO                : 
+MAS                  : 1 9
+MAYORQUE             : 
+MAYOR_IGUAL          : 
+MENORQUE             : 
+MENOR_IGUAL          : 
+MENOS                : 2 10
+MIENTRAS             : 
+NO                   : 
+NUMERO               : 
+O                    : 
+PARDE                : 5
+PARIZ                : 5
+POR                  : 3 11
+PUNTO                : 
+REAL                 : 
+SINO                 : 
+Y                    : 
+error                : 
+number               : 8 14
+variable             : 7 13
+
+Nonterminals, with rules where they appear
+
+expression           : 1 1 2 2 3 3 4 4 5 0
+special_expression   : 6 9 9 10 10 11 11 12 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . expression MAS expression
+    (2) expression -> . expression MENOS expression
+    (3) expression -> . expression POR expression
+    (4) expression -> . expression ENTRE expression
+    (5) expression -> . PARIZ expression PARDE
+    (6) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (7) expression -> . variable
+    (8) expression -> . number
+
+    PARIZ           shift and go to state 2
+    ABRE_RPN        shift and go to state 3
+    variable        shift and go to state 4
+    number          shift and go to state 5
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+    (1) expression -> expression . MAS expression
+    (2) expression -> expression . MENOS expression
+    (3) expression -> expression . POR expression
+    (4) expression -> expression . ENTRE expression
+
+    MAS             shift and go to state 6
+    MENOS           shift and go to state 7
+    POR             shift and go to state 8
+    ENTRE           shift and go to state 9
+
+
+state 2
+
+    (5) expression -> PARIZ . expression PARDE
+    (1) expression -> . expression MAS expression
+    (2) expression -> . expression MENOS expression
+    (3) expression -> . expression POR expression
+    (4) expression -> . expression ENTRE expression
+    (5) expression -> . PARIZ expression PARDE
+    (6) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (7) expression -> . variable
+    (8) expression -> . number
+
+    PARIZ           shift and go to state 2
+    ABRE_RPN        shift and go to state 3
+    variable        shift and go to state 4
+    number          shift and go to state 5
+
+    expression                     shift and go to state 10
+
+state 3
+
+    (6) expression -> ABRE_RPN . special_expression CIERRA_RPN
+    (9) special_expression -> . special_expression special_expression MAS
+    (10) special_expression -> . special_expression special_expression MENOS
+    (11) special_expression -> . special_expression special_expression POR
+    (12) special_expression -> . special_expression special_expression ENTRE
+    (13) special_expression -> . variable
+    (14) special_expression -> . number
+
+    variable        shift and go to state 12
+    number          shift and go to state 13
+
+    special_expression             shift and go to state 11
+
+state 4
+
+    (7) expression -> variable .
+
+    MAS             reduce using rule 7 (expression -> variable .)
+    MENOS           reduce using rule 7 (expression -> variable .)
+    POR             reduce using rule 7 (expression -> variable .)
+    ENTRE           reduce using rule 7 (expression -> variable .)
+    $end            reduce using rule 7 (expression -> variable .)
+    PARDE           reduce using rule 7 (expression -> variable .)
+
+
+state 5
+
+    (8) expression -> number .
+
+    MAS             reduce using rule 8 (expression -> number .)
+    MENOS           reduce using rule 8 (expression -> number .)
+    POR             reduce using rule 8 (expression -> number .)
+    ENTRE           reduce using rule 8 (expression -> number .)
+    $end            reduce using rule 8 (expression -> number .)
+    PARDE           reduce using rule 8 (expression -> number .)
+
+
+state 6
+
+    (1) expression -> expression MAS . expression
+    (1) expression -> . expression MAS expression
+    (2) expression -> . expression MENOS expression
+    (3) expression -> . expression POR expression
+    (4) expression -> . expression ENTRE expression
+    (5) expression -> . PARIZ expression PARDE
+    (6) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (7) expression -> . variable
+    (8) expression -> . number
+
+    PARIZ           shift and go to state 2
+    ABRE_RPN        shift and go to state 3
+    variable        shift and go to state 4
+    number          shift and go to state 5
+
+    expression                     shift and go to state 14
+
+state 7
+
+    (2) expression -> expression MENOS . expression
+    (1) expression -> . expression MAS expression
+    (2) expression -> . expression MENOS expression
+    (3) expression -> . expression POR expression
+    (4) expression -> . expression ENTRE expression
+    (5) expression -> . PARIZ expression PARDE
+    (6) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (7) expression -> . variable
+    (8) expression -> . number
+
+    PARIZ           shift and go to state 2
+    ABRE_RPN        shift and go to state 3
+    variable        shift and go to state 4
+    number          shift and go to state 5
+
+    expression                     shift and go to state 15
+
+state 8
+
+    (3) expression -> expression POR . expression
+    (1) expression -> . expression MAS expression
+    (2) expression -> . expression MENOS expression
+    (3) expression -> . expression POR expression
+    (4) expression -> . expression ENTRE expression
+    (5) expression -> . PARIZ expression PARDE
+    (6) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (7) expression -> . variable
+    (8) expression -> . number
+
+    PARIZ           shift and go to state 2
+    ABRE_RPN        shift and go to state 3
+    variable        shift and go to state 4
+    number          shift and go to state 5
+
+    expression                     shift and go to state 16
+
+state 9
+
+    (4) expression -> expression ENTRE . expression
+    (1) expression -> . expression MAS expression
+    (2) expression -> . expression MENOS expression
+    (3) expression -> . expression POR expression
+    (4) expression -> . expression ENTRE expression
+    (5) expression -> . PARIZ expression PARDE
+    (6) expression -> . ABRE_RPN special_expression CIERRA_RPN
+    (7) expression -> . variable
+    (8) expression -> . number
+
+    PARIZ           shift and go to state 2
+    ABRE_RPN        shift and go to state 3
+    variable        shift and go to state 4
+    number          shift and go to state 5
+
+    expression                     shift and go to state 17
+
+state 10
+
+    (5) expression -> PARIZ expression . PARDE
+    (1) expression -> expression . MAS expression
+    (2) expression -> expression . MENOS expression
+    (3) expression -> expression . POR expression
+    (4) expression -> expression . ENTRE expression
+
+    PARDE           shift and go to state 18
+    MAS             shift and go to state 6
+    MENOS           shift and go to state 7
+    POR             shift and go to state 8
+    ENTRE           shift and go to state 9
+
+
+state 11
+
+    (6) expression -> ABRE_RPN special_expression . CIERRA_RPN
+    (9) special_expression -> special_expression . special_expression MAS
+    (10) special_expression -> special_expression . special_expression MENOS
+    (11) special_expression -> special_expression . special_expression POR
+    (12) special_expression -> special_expression . special_expression ENTRE
+    (9) special_expression -> . special_expression special_expression MAS
+    (10) special_expression -> . special_expression special_expression MENOS
+    (11) special_expression -> . special_expression special_expression POR
+    (12) special_expression -> . special_expression special_expression ENTRE
+    (13) special_expression -> . variable
+    (14) special_expression -> . number
+
+    CIERRA_RPN      shift and go to state 20
+    variable        shift and go to state 12
+    number          shift and go to state 13
+
+    special_expression             shift and go to state 19
+
+state 12
+
+    (13) special_expression -> variable .
+
+    CIERRA_RPN      reduce using rule 13 (special_expression -> variable .)
+    variable        reduce using rule 13 (special_expression -> variable .)
+    number          reduce using rule 13 (special_expression -> variable .)
+    MAS             reduce using rule 13 (special_expression -> variable .)
+    MENOS           reduce using rule 13 (special_expression -> variable .)
+    POR             reduce using rule 13 (special_expression -> variable .)
+    ENTRE           reduce using rule 13 (special_expression -> variable .)
+
+
+state 13
+
+    (14) special_expression -> number .
+
+    CIERRA_RPN      reduce using rule 14 (special_expression -> number .)
+    variable        reduce using rule 14 (special_expression -> number .)
+    number          reduce using rule 14 (special_expression -> number .)
+    MAS             reduce using rule 14 (special_expression -> number .)
+    MENOS           reduce using rule 14 (special_expression -> number .)
+    POR             reduce using rule 14 (special_expression -> number .)
+    ENTRE           reduce using rule 14 (special_expression -> number .)
+
+
+state 14
+
+    (1) expression -> expression MAS expression .
+    (1) expression -> expression . MAS expression
+    (2) expression -> expression . MENOS expression
+    (3) expression -> expression . POR expression
+    (4) expression -> expression . ENTRE expression
+
+    MAS             reduce using rule 1 (expression -> expression MAS expression .)
+    MENOS           reduce using rule 1 (expression -> expression MAS expression .)
+    $end            reduce using rule 1 (expression -> expression MAS expression .)
+    PARDE           reduce using rule 1 (expression -> expression MAS expression .)
+    POR             shift and go to state 8
+    ENTRE           shift and go to state 9
+
+  ! POR             [ reduce using rule 1 (expression -> expression MAS expression .) ]
+  ! ENTRE           [ reduce using rule 1 (expression -> expression MAS expression .) ]
+  ! MAS             [ shift and go to state 6 ]
+  ! MENOS           [ shift and go to state 7 ]
+
+
+state 15
+
+    (2) expression -> expression MENOS expression .
+    (1) expression -> expression . MAS expression
+    (2) expression -> expression . MENOS expression
+    (3) expression -> expression . POR expression
+    (4) expression -> expression . ENTRE expression
+
+    MAS             reduce using rule 2 (expression -> expression MENOS expression .)
+    MENOS           reduce using rule 2 (expression -> expression MENOS expression .)
+    $end            reduce using rule 2 (expression -> expression MENOS expression .)
+    PARDE           reduce using rule 2 (expression -> expression MENOS expression .)
+    POR             shift and go to state 8
+    ENTRE           shift and go to state 9
+
+  ! POR             [ reduce using rule 2 (expression -> expression MENOS expression .) ]
+  ! ENTRE           [ reduce using rule 2 (expression -> expression MENOS expression .) ]
+  ! MAS             [ shift and go to state 6 ]
+  ! MENOS           [ shift and go to state 7 ]
+
+
+state 16
+
+    (3) expression -> expression POR expression .
+    (1) expression -> expression . MAS expression
+    (2) expression -> expression . MENOS expression
+    (3) expression -> expression . POR expression
+    (4) expression -> expression . ENTRE expression
+
+    MAS             reduce using rule 3 (expression -> expression POR expression .)
+    MENOS           reduce using rule 3 (expression -> expression POR expression .)
+    POR             reduce using rule 3 (expression -> expression POR expression .)
+    ENTRE           reduce using rule 3 (expression -> expression POR expression .)
+    $end            reduce using rule 3 (expression -> expression POR expression .)
+    PARDE           reduce using rule 3 (expression -> expression POR expression .)
+
+  ! MAS             [ shift and go to state 6 ]
+  ! MENOS           [ shift and go to state 7 ]
+  ! POR             [ shift and go to state 8 ]
+  ! ENTRE           [ shift and go to state 9 ]
+
+
+state 17
+
+    (4) expression -> expression ENTRE expression .
+    (1) expression -> expression . MAS expression
+    (2) expression -> expression . MENOS expression
+    (3) expression -> expression . POR expression
+    (4) expression -> expression . ENTRE expression
+
+    MAS             reduce using rule 4 (expression -> expression ENTRE expression .)
+    MENOS           reduce using rule 4 (expression -> expression ENTRE expression .)
+    POR             reduce using rule 4 (expression -> expression ENTRE expression .)
+    ENTRE           reduce using rule 4 (expression -> expression ENTRE expression .)
+    $end            reduce using rule 4 (expression -> expression ENTRE expression .)
+    PARDE           reduce using rule 4 (expression -> expression ENTRE expression .)
+
+  ! MAS             [ shift and go to state 6 ]
+  ! MENOS           [ shift and go to state 7 ]
+  ! POR             [ shift and go to state 8 ]
+  ! ENTRE           [ shift and go to state 9 ]
+
+
+state 18
+
+    (5) expression -> PARIZ expression PARDE .
+
+    MAS             reduce using rule 5 (expression -> PARIZ expression PARDE .)
+    MENOS           reduce using rule 5 (expression -> PARIZ expression PARDE .)
+    POR             reduce using rule 5 (expression -> PARIZ expression PARDE .)
+    ENTRE           reduce using rule 5 (expression -> PARIZ expression PARDE .)
+    $end            reduce using rule 5 (expression -> PARIZ expression PARDE .)
+    PARDE           reduce using rule 5 (expression -> PARIZ expression PARDE .)
+
+
+state 19
+
+    (9) special_expression -> special_expression special_expression . MAS
+    (10) special_expression -> special_expression special_expression . MENOS
+    (11) special_expression -> special_expression special_expression . POR
+    (12) special_expression -> special_expression special_expression . ENTRE
+    (9) special_expression -> special_expression . special_expression MAS
+    (10) special_expression -> special_expression . special_expression MENOS
+    (11) special_expression -> special_expression . special_expression POR
+    (12) special_expression -> special_expression . special_expression ENTRE
+    (9) special_expression -> . special_expression special_expression MAS
+    (10) special_expression -> . special_expression special_expression MENOS
+    (11) special_expression -> . special_expression special_expression POR
+    (12) special_expression -> . special_expression special_expression ENTRE
+    (13) special_expression -> . variable
+    (14) special_expression -> . number
+
+    MAS             shift and go to state 21
+    MENOS           shift and go to state 22
+    POR             shift and go to state 23
+    ENTRE           shift and go to state 24
+    variable        shift and go to state 12
+    number          shift and go to state 13
+
+    special_expression             shift and go to state 19
+
+state 20
+
+    (6) expression -> ABRE_RPN special_expression CIERRA_RPN .
+
+    MAS             reduce using rule 6 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    MENOS           reduce using rule 6 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    POR             reduce using rule 6 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    ENTRE           reduce using rule 6 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    $end            reduce using rule 6 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+    PARDE           reduce using rule 6 (expression -> ABRE_RPN special_expression CIERRA_RPN .)
+
+
+state 21
+
+    (9) special_expression -> special_expression special_expression MAS .
+
+    CIERRA_RPN      reduce using rule 9 (special_expression -> special_expression special_expression MAS .)
+    variable        reduce using rule 9 (special_expression -> special_expression special_expression MAS .)
+    number          reduce using rule 9 (special_expression -> special_expression special_expression MAS .)
+    MAS             reduce using rule 9 (special_expression -> special_expression special_expression MAS .)
+    MENOS           reduce using rule 9 (special_expression -> special_expression special_expression MAS .)
+    POR             reduce using rule 9 (special_expression -> special_expression special_expression MAS .)
+    ENTRE           reduce using rule 9 (special_expression -> special_expression special_expression MAS .)
+
+
+state 22
+
+    (10) special_expression -> special_expression special_expression MENOS .
+
+    CIERRA_RPN      reduce using rule 10 (special_expression -> special_expression special_expression MENOS .)
+    variable        reduce using rule 10 (special_expression -> special_expression special_expression MENOS .)
+    number          reduce using rule 10 (special_expression -> special_expression special_expression MENOS .)
+    MAS             reduce using rule 10 (special_expression -> special_expression special_expression MENOS .)
+    MENOS           reduce using rule 10 (special_expression -> special_expression special_expression MENOS .)
+    POR             reduce using rule 10 (special_expression -> special_expression special_expression MENOS .)
+    ENTRE           reduce using rule 10 (special_expression -> special_expression special_expression MENOS .)
+
+
+state 23
+
+    (11) special_expression -> special_expression special_expression POR .
+
+    CIERRA_RPN      reduce using rule 11 (special_expression -> special_expression special_expression POR .)
+    variable        reduce using rule 11 (special_expression -> special_expression special_expression POR .)
+    number          reduce using rule 11 (special_expression -> special_expression special_expression POR .)
+    MAS             reduce using rule 11 (special_expression -> special_expression special_expression POR .)
+    MENOS           reduce using rule 11 (special_expression -> special_expression special_expression POR .)
+    POR             reduce using rule 11 (special_expression -> special_expression special_expression POR .)
+    ENTRE           reduce using rule 11 (special_expression -> special_expression special_expression POR .)
+
+
+state 24
+
+    (12) special_expression -> special_expression special_expression ENTRE .
+
+    CIERRA_RPN      reduce using rule 12 (special_expression -> special_expression special_expression ENTRE .)
+    variable        reduce using rule 12 (special_expression -> special_expression special_expression ENTRE .)
+    number          reduce using rule 12 (special_expression -> special_expression special_expression ENTRE .)
+    MAS             reduce using rule 12 (special_expression -> special_expression special_expression ENTRE .)
+    MENOS           reduce using rule 12 (special_expression -> special_expression special_expression ENTRE .)
+    POR             reduce using rule 12 (special_expression -> special_expression special_expression ENTRE .)
+    ENTRE           reduce using rule 12 (special_expression -> special_expression special_expression ENTRE .)
+

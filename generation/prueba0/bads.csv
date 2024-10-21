@@ -1,0 +1,6 @@
+sentence,label
+],bad
+number,bad
+variable variable,bad
+] variable,bad
+variable / number - ( [ ) variable variable number / variable variable number + / number / / * ] ),bad
