@@ -1,8 +1,11 @@
+import os
 from lexer import lexer, tokens
 from parser_1 import parser
 from os import path, getcwd, sep
-
+import traceback
 import argparse
+
+from generator import translate_ast_to_python
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("direccion")
@@ -12,11 +15,14 @@ argparser.add_argument("--tokens", action="store_true")
 args = argparser.parse_args()
 
 if args.cwd:
-    inputFile = path.join(getcwd(), args.direccion.replace('/', sep).replace('\\', sep))
+    inputFile = path.join(getcwd(), args.direccion.replace(
+        '/', sep).replace('\\', sep))
 else:
     inputFile = args.direccion
-    
+
 debug = args.debug
+
+
 def main():
     with open(inputFile) as file:
         data = file.read()
@@ -30,14 +36,20 @@ def main():
             n_lexer.input(data)
             while True:
                 tok = n_lexer.token()
-                if not tok: break
+                if not tok:
+                    break
                 print(tok)
-            
+
         print("="*30)
         print("Analizando {}".format(inputFile))
         print("="*30)
         try:
-            parser.parse(data, debug=debug, lexer=lexer)
+            result = parser.parse(data, debug=debug, lexer=lexer)
+            print(result)
+            generated = translate_ast_to_python(result)
+
+            with open(os.path.basename(file.name).replace(".txt", "") + "_generated.py", "w", encoding="utf-8") as file:
+                file.write(generated)
             print("👽 Sin errores 👽")
         except Exception as e:
             print("😡 Se encontraron problemas 😡")
@@ -45,6 +57,8 @@ def main():
                 print(e.message)
             else:
                 print(e)
-            
-if __name__=="__main__":
+            traceback.print_exc()
+
+
+if __name__ == "__main__":
     main()
